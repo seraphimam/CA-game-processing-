@@ -1,9 +1,7 @@
-import processing.core.PApplet;  
 import processing.core.PFont;  //calling font
 import java.io.*;
 
-public class Adventure extends PApplet{
-  
+ 
   //these variable for reading text file and save date
   PrintWriter output;
   BufferedReader read;
@@ -11,11 +9,15 @@ public class Adventure extends PApplet{
   
   PFont font;
   
-  private float side_margin, height_margin;
-  private int clickcase = 0;
-  private boolean saved = false;
-  private int room = 0;
+  protected float side_margin, height_margin;
+  protected int clickcase = 0;
+  protected boolean saved = false;
+  int room = 0;
+  int boxwidth,boxheight;
+   int boxX,boxY;
   public void settings(){
+    
+    
          
     size(1600, 900);
     
@@ -27,14 +29,10 @@ public class Adventure extends PApplet{
 //----------------------------------------------------------------------------------------------------------------------------------------------------------------
   
   public void setup(){
-    
-    
+        
+    frameRate(30);
     
     colorMode(HSB, 100);
-    
-    font = loadFont("menu_font.vlw");
-    
-    textFont(font);
     
     read = createReader("bin/characterdata/saveddata.txt");
     
@@ -58,11 +56,12 @@ public class Adventure extends PApplet{
 //----------------------------------------------------------------------------------------------------------------------------------------------------------------
   
   public void draw(){
-    
+    structureline();
     switch(room)
     {
     
-      case 0:       
+      case 0:     
+      
                   switch(clickcase)
                   {
                     
@@ -85,73 +84,22 @@ public class Adventure extends PApplet{
       
         break;  //case 1 for main menu draw
     
+      
+      case 1:
+      
+      
+      
+      jobchoicestyle();
+      
+      break;
+      
+      
     
-    }
+    }  //close switch for room
  
     
   }  //close draw()
-  
-  public void mousePressed(){
-    float x = mouseX;
-    float y = mouseY;
-    
-    if( (x >= side_margin && x <= side_margin+200) && (y >= height_margin-60 && y <= height_margin) ){
-      clickcase = 1;
-    }
-    
-    if( (x >= side_margin && x <= side_margin+200) && (y >= height_margin+140 && y <= height_margin+200) ){
-      clickcase = 2;
-    }
-    
-    if( (x >= side_margin && x <= side_margin+200) && (y >= height_margin+340 && y <= height_margin+400) ){
-      exit();
-    }
-  }  //close mousePressed()
- 
-//----------------------------------------------------------------------------------------------------------------------------------------------------------------
-  
-  
-    public void menu(){
-    
-    fill(0, 0, 100);
-    fill(0);
-                                  
-                                  
-    textSize(60);
-    text("Game Title",side_margin,height_margin/2);
-                                  
-    textSize(30);
-    text("New Game", side_margin, height_margin);
-                                  
-    textSize(30);
-    text("Load Game", side_margin, height_margin+200);
-                                  
-    textSize(30);
-    text("Exit", side_margin, height_margin+400);
-                                  
-    fill(0, 100, 100);
-    
-  }  //close menu()
-  
-  
-  public void newGame(){    
-    println("hihi");
-    
-  }  //close newGame()
-  
-  public void load(){
-    
-    if(profile.length != 0){
-      for(int i = 0; i < profile.length; i++){
-        text(profile[i], 300, 300);
-      }
-    }else{
-      
-      saved = true;
-      clickcase = 0;
-      
-    }
-  }  //close load()
+
   
 
   
@@ -176,6 +124,3 @@ public class Adventure extends PApplet{
     }
     fill(255,100,100);
   }  // close structureline() for showing pixel 
-  
-  
-}  //close public class
