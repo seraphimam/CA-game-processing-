@@ -6,7 +6,7 @@ import java.io.*;
   PrintWriter output;
   BufferedReader read;
   String[] profile;
-  
+  PImage bg;
   PFont font;
   
   protected float side_margin, height_margin;
@@ -88,12 +88,14 @@ import java.io.*;
       case 1:
       
       
-      
       jobchoicestyle();
       
       break;
       
+      case 2:
       
+      background(bg);
+      break;
     
     }  //close switch for room
  

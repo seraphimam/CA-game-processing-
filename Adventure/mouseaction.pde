@@ -28,26 +28,31 @@
                 if(( x >= boxX && x<= boxX+boxwidth) && (y >= boxY && y <= boxY+boxheight/5)){
                   println("Reading job1 status");
                   playerdata(1);
+                  drawmap(1);
                 }
                 
                 if(( x >= boxX && x<= boxX+boxwidth) && (y >= boxY+boxheight/5 && y <= boxY+boxheight/5*2)){
                   println("Reading job2 status");
                   playerdata(2);
+                  drawmap(1);
                 }
                 
                 if(( x >= boxX && x<= boxX+boxwidth) && (y >= boxY+boxheight/5*2 && y <= boxY+boxheight/5*3)){
                   println("Reading job3 status");
                   playerdata(3);
+                  drawmap(1);
                 }
                 
                 if(( x >= boxX && x<= boxX+boxwidth) && (y >= boxY+boxheight/5*3 && y <= boxY+boxheight/5*4)){
                   println("Reading job4 status");
                   playerdata(4);
+                  drawmap(1);
                 }
                 
                 if(( x >= boxX && x<= boxX+boxwidth) && (y >= boxY+boxheight/5*4 && y <= boxY+boxheight)){
                   println("Reading job5 status");
                   playerdata(5);
+                  drawmap(1);
                 }
                 
                
