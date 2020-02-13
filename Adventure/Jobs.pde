@@ -1,4 +1,4 @@
-public class Jobs{
+class Jobs{
   protected int patkAmp, pdefAmp, matkAmp, mdefAmp, spdAmp, hpAmp, mpAmp;
   
   public Jobs(){

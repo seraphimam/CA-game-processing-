@@ -1,7 +1,7 @@
-public class Priest extends Jobs{
+class Priest extends Jobs{
 	//Skill skill = new Skill(2);
 	
-	public |Priest(){
+	public Priest(){
 		patkAmp = 1;
 		pdefAmp = 2;
 		matkAmp = 2;

@@ -1,7 +1,7 @@
-public class Mage extends Jobs{
+class Mage extends Jobs{
 	//Skill skill = new Skill(3);
 	
-	public |Mage(){
+	public Mage(){
 		patkAmp = 1;
 		pdefAmp = 1;
 		matkAmp = 6;

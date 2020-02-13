@@ -1,7 +1,7 @@
-public class Knight extends Jobs{
+class Knight extends Jobs{
 	//Skill skill = new Skill(1);
 	
-	public |Knight(){
+	public Knight(){
 		patkAmp = 3;
 		pdefAmp = 4;
 		matkAmp = 1;

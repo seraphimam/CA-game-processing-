@@ -1,7 +1,7 @@
-public class Assassin extends Jobs{
+class Assassin extends Jobs{
 	//Skill skill = new Skill(6);
 	
-	public |Assassin(){
+	public Assassin(){
 		patkAmp = 2;
 		pdefAmp = 4;
 		matkAmp = 1;

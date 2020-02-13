@@ -1,7 +1,7 @@
-public class Ranger extends Jobs{
+class Ranger extends Jobs{
 	//Skill skill = new Skill(5);
 	
-	public |Ranger(){
+	public Ranger(){
 		patkAmp = 3;
 		pdefAmp = 2;
 		matkAmp = 2;
