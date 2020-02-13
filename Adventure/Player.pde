@@ -65,50 +65,6 @@ class Player extends Units{
 		this.bonus_agi += a;
 	}
 	
-	public void inc_patk(int a){
-		this.bonus_patk += a;
-	}
-	
-	public void inc_pdef(int a){
-		this.bonus_pdef += a;
-	}
-	
-	public void inc_matk(int a){
-		this.bonus_matk += a;
-	}
-	
-	public void inc_mdef(int a){
-		this.bonus_mdef += a;
-	}
-	
-	public void inc_spd(int a){
-		this.bonus_spd += a;
-	}
-	
-	public void inc_hp(int a){
-		this.bonus_hp += a;
-	}
-	
-	public void inc_mp(int a){
-		this.bonus_mp += a;
-	}
-	
-	public void rec_hp(int a){
-		if(this.hp_dec >= a){
-			this.hp_dec -= a;
-		}else{
-			this.hp_dec = 0;
-		}
-	}
-	
-	public void rec_mp(int a){
-		if(this.mp_dec >= a){
-			this.mp_dec -= a;
-		}else{
-			this.mp_dec = 0;
-		}
-	}
-	
 	//setters
 	
 	/*
@@ -116,10 +72,6 @@ class Player extends Units{
 		this.job = x;
 	}
 	*/
-	
-	public void set_level(int x){
-		this.level = x;
-	}
 	
 	public void set_exp(int x){
 		this.exp = x;
@@ -148,8 +100,8 @@ class Player extends Units{
 	/***************************
 	*	Getters
 	***************************/
-	public int get_level(){
-		return this.level;
+	public int get_exp(){
+		return this.exp;
 	}
 	
 	public int get_str(){
@@ -170,42 +122,6 @@ class Player extends Units{
 	
 	public int get_agi(){
 		return this.agi;
-	}
-	
-	public int get_patk(){
-		return this.patk;
-	}
-	
-	public int get_pdef(){
-		return this.pdef;
-	}
-	
-	public int get_matk(){
-		return this.matk;
-	}
-	
-	public int get_mdef(){
-		return this.mdef;
-	}
-	
-	public int get_spd(){
-		return this.spd;
-	}
-	
-	public int get_cur_hp(){
-		return this.cur_hp;
-	}
-	
-	public int get_cur_mp(){
-		return this.cur_mp;
-	}
-	
-	public int get_max_hp(){
-		return this.max_hp;
-	}
-	
-	public int get_max_mp(){
-		return this.max_mp;
 	}
 	
 	/***********************
