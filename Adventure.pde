@@ -14,14 +14,15 @@ public class Adventure extends PApplet{
   private float side_margin, height_margin;
   private int clickcase = 0;
   private boolean saved = false;
+  private int room = 1;
   
   public void settings(){
          
-    size(displayWidth, displayHeight);
+    size(1600, 900);
     
-    side_margin = displayWidth/2 - 60;
+    side_margin = width/2 - 60;
     
-    height_margin = displayHeight/2;
+    height_margin = height/2;
   }  //close settings()
   
   public void setup(){
@@ -37,10 +38,27 @@ public class Adventure extends PApplet{
     
     output = createWriter("bin/characterdata/saveddata.txt");
     
+    try{
+      output = createWriter("bin/characterdata/saveddata.txt");
+    }catch(Exception e){
+      System.out.println("SAVE FAILED");
+    }
+    
+    try{
+      profile = loadStrings("bin/characterdata/saveddata.txt");
+    }catch(Exception e){
+      text("LOAD FAILED", 100, 200);
+    }
+    
     
   }  //close setup()
   
   public void draw(){
+    
+    if(room == 1)
+    {
+      
+    }
  
     if(clickcase == 0){
     
@@ -92,10 +110,8 @@ public class Adventure extends PApplet{
     }
   }  //close mousePressed()
   
-  public void newGame(){
-    
-    output.println("New game");
-    output.close();
+  public void newGame(){    
+    println("hihi");
     
   }  //close newGame()
   
@@ -112,4 +128,26 @@ public class Adventure extends PApplet{
       
     }
   }  //close load()
+  
+  public void structureline()
+  {
+    int x,y;
+    
+    y=0;
+    
+    for (x=0;x<1600;x+=40)
+    {
+      line(x,y,x,y+900);
+    }
+    
+    x=0;
+    
+    for (y =0;y<900;y+=45)
+    {
+      line (x,y,x+1600,y);
+    }
+    fill(255,100,100);
+  }  // close structureline() for showing pixel 
+  
+  
 }  //close public class
