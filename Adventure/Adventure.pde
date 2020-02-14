@@ -1,20 +1,26 @@
-import processing.core.PFont;  //calling font
-import java.io.*;
-
- 
+  /*****************************************************************************************************************************************************************/
+  
+  import processing.core.PFont;  //calling font
+  import java.io.*;
+  import java.util.Random;
+  
+ /*****************************************************************************************************************************************************************/
+  
   //these variable for reading text file and save date
+  
   PrintWriter output;
   BufferedReader read;
   String[] profile;
+  
   PImage bg;
   PFont font;
   
-  protected float side_margin, height_margin;
-  protected int clickcase = 0;
-  protected boolean saved = false;
-  int room = 0;
-  int boxwidth,boxheight;
-   int boxX,boxY;
+  Random r = new Random();
+
+
+
+/*****************************************************************************************************************************************************************/  
+ 
   public void settings(){
     
     
@@ -26,7 +32,7 @@ import java.io.*;
     height_margin = height/2;
   }  //close settings()
   
-//----------------------------------------------------------------------------------------------------------------------------------------------------------------
+/*****************************************************************************************************************************************************************/
   
   public void setup(){
         
@@ -34,9 +40,9 @@ import java.io.*;
     
     colorMode(HSB, 100);
     
-    read = createReader("bin/characterdata/saveddata.txt");
+    //read = createReader("bin/characterdata/saveddata.txt");
     
-    output = createWriter("bin/characterdata/saveddata.txt");
+    //output = createWriter("bin/characterdata/saveddata.txt");
     
     try{
       output = createWriter("bin/characterdata/saveddata.txt");
@@ -53,31 +59,19 @@ import java.io.*;
     
   }  //close setup()
   
-//----------------------------------------------------------------------------------------------------------------------------------------------------------------
+/*****************************************************************************************************************************************************************/
   
   public void draw(){
     structureline();
     switch(room)
     {
+      case 99:
+        option();
+        break;
     
       case 0:     
-      
-                  switch(clickcase)
-                  {
-                    
-                            case 0:
-                                  menu();
-                                  break;
-                            
-                            case 1:
-                                  newGame();
-                                  break;
-                            
-                            case 2:
-                                  load();
-                                  break;                
-                  }  //close switch(clickcase)
-                  
+                  menu();
+              
                   if(saved){
                     text("No character detected, please start new game.", 220, 150);
                   }
@@ -95,6 +89,12 @@ import java.io.*;
       case 2:
       
       background(bg);
+      structureline();
+      move();
+      isBoundary();
+      fill(17, 64, 98, 75);
+      //rect(0,0,500, 900);
+      rect(p.charX, p.charY, 40, 45);
       break;
     
     }  //close switch for room
@@ -103,7 +103,7 @@ import java.io.*;
   }  //close draw()
 
   
-
+/*****************************************************************************************************************************************************************/
   
   
   

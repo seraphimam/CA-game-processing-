@@ -20,7 +20,21 @@
     }else{
       
       saved = true;
-      clickcase = 0;
       
     }
   }  //close load()
+  
+  
+  void saveData(){
+    File f = new File(dataPath("bin/characterdata"), "saveddata.txt");
+    f.delete();
+    try{
+      output = createWriter("bin/characterdata/saveddata.txt");
+    }catch(Exception e){
+      System.out.println("SAVE FAILED");
+    }
+    output.println(p.job.code);
+    output.println(p.level);
+    output.println(p.exp);
+    output.close();
+  }  //close saveData()

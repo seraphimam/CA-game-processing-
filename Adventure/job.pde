@@ -1,4 +1,6 @@
 public class Jobs{
+  
+  
   protected int patkAmp, pdefAmp, matkAmp, mdefAmp, spdAmp, hpAmp, mpAmp;
   
   public Jobs(){
@@ -37,9 +39,9 @@ public class Jobs{
 
 
 class Job{
-  private String name;
-  private int[] amplifier = new int[7];
-  private int code = 0;
+  public String name;
+  public int[] amplifier = new int[7];
+  public int code = 0;
 
   public Job(){
   }
@@ -176,7 +178,7 @@ public class Knight extends Jobs{
   }
 }
 
-public class Paladin extends Jobs{
+ class Paladin extends Jobs{
   //Skill skill = new Skill(4);
   
   public Paladin(){
@@ -190,7 +192,7 @@ public class Paladin extends Jobs{
   }
 }
 
-public class Priest extends Jobs{
+ class Priest extends Jobs{
   //Skill skill = new Skill(2);
   
   public Priest(){
@@ -204,7 +206,7 @@ public class Priest extends Jobs{
   }
 }
 
-public class Ranger extends Jobs{
+ class Ranger extends Jobs{
   //Skill skill = new Skill(5);
   
   public Ranger(){
@@ -218,7 +220,7 @@ public class Ranger extends Jobs{
   }
 }
 
-public class Assassin extends Jobs{
+ class Assassin extends Jobs{
   //Skill skill = new Skill(5);
   
   public Assassin(){
