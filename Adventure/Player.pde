@@ -1,7 +1,3 @@
-Player p;
-
-/*****************************************************************************************************************************************************************/
-  
 class Player extends Units{
 	protected int str = 1, con = 1, intel = 1, wis = 1, agi = 1, exp = 0;
 	Job job;
@@ -11,6 +7,8 @@ class Player extends Units{
 	
 	public Player(int x){
 		job = new Job(x);
+    init_stats();
+    calc_stats();
 	}
 	
 	public Player(int x, int lv, int st, int co, int in, int wi, int ag){
@@ -22,6 +20,14 @@ class Player extends Units{
 		this.wis = wi;
 		this.agi = ag;
 	}
+
+  public void init_stats(){
+    this.str = job.stats[0];
+    this.con = job.stats[0];
+    this.intel = job.stats[0];
+    this.wis = job.stats[0];
+    this.agi = job.stats[0];
+  }
 	
 	//stats calculations
 	public void calc_stats(){

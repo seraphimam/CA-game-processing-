@@ -1,19 +1,8 @@
-
-int room;
-int steps = 0, encounter;
-int sqw = 40,sqh = 45;
-
-protected boolean saved = false;  
-protected boolean up = false, down = false, left = false, right = false;
-
-/*****************************************************************************************************************************************************************/
-
-
 void drawmap(int mapid){
   
   switch(mapid){
       case 1:
-        bg = loadImage("src/backgroundimage/map1.jpg");
+        bg = loadImage("src/backgroundimage/map1.png");
         
         room = 2;
       break;

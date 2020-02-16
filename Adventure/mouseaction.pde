@@ -1,34 +1,30 @@
- int p_class = 0;
- 
-/*****************************************************************************************************************************************************************/
-
  public void mousePressed(){
     
     float x = mouseX;
     float y = mouseY;
     
-    switch (room) 
+    switch (room)
     {
-        case 0:
+        case 0:  //  main menu
           
         
-                if( (x >= side_margin -60 && x <= side_margin+100) && (y >= height_margin-60 && y <= height_margin) ){
+                if( (x >= side_margin && x <= side_margin+200) && (y >= height_margin-60 && y <= height_margin) ){
                   newGame();
                 }
                 
-                if( (x >= side_margin -60 && x <= side_margin+100) && (y >= height_margin+140 && y <= height_margin+200) ){
+                if( (x >= side_margin && x <= side_margin+200) && (y >= height_margin+140 && y <= height_margin+200) ){
                   load();
                 }
                 
-                if( (x >= side_margin -60 && x <= side_margin+100) && (y >= height_margin+340 && y <= height_margin+400) ){
+                if( (x >= side_margin && x <= side_margin+200) && (y >= height_margin+340 && y <= height_margin+400) ){
                   exit();
                 }
                     
         break;
 
-/*****************************************************************************************************************************************************************/    
+//---------------------------------------------------------------------------------------        
 
-        case 1:
+        case 1:  //  drawroom
                 
                 if(( x >= boxX && x<= boxX+boxwidth) && (y >= 0*60+boxY+40-12.5 && y <= 0*60+boxY+40+12.5)){
                   println("Reading job1 status");
@@ -73,9 +69,56 @@
         
         break;
         
-/*****************************************************************************************************************************************************************/
- 
-       case 99:
+ //---------------------------------------------------------------------------------------      
+ /*******************************************
+ */
+       
+       case 91:  //  item selct drop-down menu
+            
+            
+              
+      for(int i = 0; i < bag.row; i++){
+      for(int j = 0; j < bag.col; j++)
+      {
+        float sqx = (j+1)*bag.hs + (j*bag.square_width) + (width + bag.UI_dis)/2;
+        float sqy = (i+1)*bag.vs + (i * bag.square_height) + bag.vertical_margin;
+        
+          if(x >= sqx && x <= sqx + bag.square_width  && y >=  sqy && y <= sqy + bag.square_height)
+          {
+            bagoptX = mouseX+bag.hs;
+            bagoptY = mouseY;
+              room = 98;
+          }
+      }
+    }
+            
+            
+       
+           break;
+       
+       
+       case 98:
+         
+         if((x >= bagoptX && x<= bagoptX+bag.square_width*3) && (y >= bagoptY && y <= bagoptY+bag.square_height)){
+           
+           println("used");
+         
+         }
+         
+         else if((x >= bagoptX && x<= bagoptX+bag.square_width*3) && (y > bagoptY + bag.square_height&& y <= bagoptY+bag.square_height * 2)){
+           println("droped");
+           
+         }
+         
+         else{         
+           room = 91;
+         }
+         
+       
+         break;
+       
+       
+       case 99:  //  option menu
             
              if((x >= boxX && x <= boxX+boxwidth)&&(y >= mainY-text_height && y<= mainY+text_height)){ 
                opt = false;

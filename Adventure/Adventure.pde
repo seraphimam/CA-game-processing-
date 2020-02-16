@@ -1,44 +1,52 @@
-  /*****************************************************************************************************************************************************************/
-  
   import processing.core.PFont;  //calling font
   import java.io.*;
   import java.util.Random;
-  
- /*****************************************************************************************************************************************************************/
-  
+ 
   //these variable for reading text file and save date
-  
   PrintWriter output;
   BufferedReader read;
   String[] profile;
-  
-  PImage bg;
+  PImage bg, bag_img;
+  int item_count = 3;
+  PImage item[] = new PImage[item_count];
   PFont font;
   
   Random r = new Random();
-
-
-
-/*****************************************************************************************************************************************************************/  
- 
+  int steps = 0, encounter;
+  protected float side_margin, height_margin;
+  protected boolean saved = false;
+  int room = 0;
+  int p_class = 0;
+  boolean up = false, down = false, left = false, right = false;
+  int floor = 5, fl_room = 9;
+  int sqw = 40, sqh = 45;
+  Player p;
+  int boxwidth,boxheight;
+  int boxX,boxY;
+  int grid_width = 40, grid_height = 45;
+  int width = 1600, height = 900;
+  
   public void settings(){
-    
-    
-         
-    size(1600, 900);
+    size(width, height);
     
     side_margin = width/2 - 60;
     
     height_margin = height/2;
   }  //close settings()
   
-/*****************************************************************************************************************************************************************/
+//----------------------------------------------------------------------------------------------------------------------------------------------------------------
   
   public void setup(){
         
     frameRate(30);
     
     colorMode(HSB, 100);
+    
+    for(int i = 0; i < item_count; i++){
+      item[i] = loadImage("src/item/map" + i + ".jpg");
+    }
+    
+    bag_img = loadImage("src/backgroundimage/map1.png");
     
     //read = createReader("bin/characterdata/saveddata.txt");
     
@@ -59,14 +67,40 @@
     
   }  //close setup()
   
-/*****************************************************************************************************************************************************************/
+//----------------------------------------------------------------------------------------------------------------------------------------------------------------
   
   public void draw(){
     structureline();
     switch(room)
     {
       case 99:
+        
         option();
+        
+        break;
+      
+      case 98:
+      
+        background(bag_img);
+        
+        bag.display_bag();
+        
+        bag_option();
+        
+        break;
+      
+      case 90:
+        
+        battle_UI();
+        
+        break;
+      
+      case 91:
+        
+        background(bag_img);
+        
+        bag.display_bag();
+        
         break;
     
       case 0:     
@@ -103,7 +137,7 @@
   }  //close draw()
 
   
-/*****************************************************************************************************************************************************************/
+
   
   
   
@@ -113,14 +147,14 @@
     
     y=0;
     
-    for (x=0;x<1600;x+=40)
+    for (x=0;x<1600;x+=sqw)
     {
       line(x,y,x,y+900);
     }
     
     x=0;
     
-    for (y =0;y<900;y+=45)
+    for (y =0;y<900;y+=sqh)
     {
       line (x,y,x+1600,y);
     }

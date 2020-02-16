@@ -1,7 +1,8 @@
+int stats_count = 5;
+
 public class Jobs{
-  
-  
   protected int patkAmp, pdefAmp, matkAmp, mdefAmp, spdAmp, hpAmp, mpAmp;
+  protected int[] base_stats = new int[stats_count];
   
   public Jobs(){
     patkAmp = 1;
@@ -34,6 +35,10 @@ public class Jobs{
   public int getMpAmp(){
     return this.mpAmp;
   }
+  
+  public int[] get_base_stats(){
+    return this.base_stats;
+  }
 }
 
 
@@ -42,6 +47,7 @@ class Job{
   public String name;
   public int[] amplifier = new int[7];
   public int code = 0;
+  public int[] stats = new int[stats_count];
 
   public Job(){
   }
@@ -54,6 +60,9 @@ class Job{
         this.name = "Knight";
         Knight knight = new Knight();
         init_Knight(knight);
+        for(int i = 0; i < stats_count; i++){
+          this.stats[i] = knight.get_base_stats()[i];
+        }
         break;
       
       case 2:
@@ -161,6 +170,12 @@ public class Knight extends Jobs{
     spdAmp = 3;
     hpAmp = 5;
     mpAmp = 3;
+    
+    base_stats[0] = 9;
+    base_stats[1] = 10;
+    base_stats[2] = 3;
+    base_stats[3] = 6;
+    base_stats[4] = 4;
   }
 }
 

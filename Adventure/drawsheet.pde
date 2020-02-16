@@ -1,16 +1,14 @@
 String [] options = {"Main Menu", "Save", "Quit"};
 String[] job_list = {"Knight", "Priest", "Mage", "Paladin", "Ranger", "Assassin"};
 int mainY, saveY, exitY, text_height;
-int boxwidth,boxheight;
-int boxX,boxY;
-protected float side_margin, height_margin;
 
-/*****************************************************************************************************************************************************************/
+float bagoptX, bagoptY;
 
-public void menu(){
+
+
+ void menu(){
   
     font = loadFont("menu_font.vlw");
-
     
     textFont(font);
     
@@ -23,9 +21,11 @@ public void menu(){
                                   
     textSize(30);
     text("New Game", side_margin, height_margin);
-
+                                  
+    textSize(30);
     text("Load Game", side_margin, height_margin+200);
-
+                                  
+    textSize(30);
     text("Exit", side_margin, height_margin+400);
  
     
@@ -76,4 +76,22 @@ public void menu(){
     mainY = boxY+boxheight/3;
     saveY = mainY + 70;
     exitY = saveY + 70;
+  }
+  
+  void bag_option(){
+    
+    fill(12,100,100);
+    rect(bagoptX,bagoptY,bag.square_width*3,bag.square_height*3);
+    
+    textAlign(CENTER, CENTER);
+    fill(255,100,100);
+    stroke(4);
+    textSize(24);
+    text("USE",bagoptX + bag.square_width*1.5, bagoptY + bag.square_height*0.5);
+    line(bagoptX, bagoptY + bag.square_height, bagoptX+ bag.square_width*3, bagoptY + bag.square_height);
+    text("DROP",bagoptX + bag.square_width*1.5, bagoptY + bag.square_height*1.5);
+    line(bagoptX, bagoptY + bag.square_height*2, bagoptX + bag.square_width* 3, bagoptY + bag.square_height*2);
+    text("CANCEL",bagoptX + bag.square_width*1.5, bagoptY + bag.square_height*2.5);
+    
+  
   }

@@ -1,8 +1,6 @@
 boolean opt = false;
 int temp_room;
 
-/*****************************************************************************************************************************************************************/
-
 void keyPressed(){
     if(room > 1){
       switch(keyCode){
@@ -35,6 +33,20 @@ void keyPressed(){
           //println("change down: " + down);
           break;
           
+          case 'b':
+          case 'B':
+            if(!inBattle){
+              inBattle = true;
+              temp_room = room;
+              room = 90;
+              
+            }else{
+              inBattle = false;
+
+              room = temp_room;
+            }
+              break;
+          
           case 'o':
           case 'O':
             if(!opt){
@@ -50,11 +62,24 @@ void keyPressed(){
               println("true opt: " + opt);
             }
               break;
+              
+          case 'q':
+          case 'Q':
+            if(!inBag){
+              inBag = true;
+              temp_room = room;
+              room = 91;
+              
+            }else{
+              inBag = false;
+
+              room = temp_room;
+            }
+              break;
+            
       }
     }
   }
-
-/*****************************************************************************************************************************************************************/
   
   void keyReleased(){
     switch(keyCode){
