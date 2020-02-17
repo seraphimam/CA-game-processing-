@@ -1,3 +1,7 @@
+/*******************************************
+key system inside game
+********************************************/ 
+
 void drawmap(int mapid){
   
   switch(mapid){
@@ -11,63 +15,77 @@ void drawmap(int mapid){
       
       break;
   
-  }
-}
+  }                //close switch map according to mapid(can not use room firstly)
+}                    // close drawmap()              
 
 void isBoundary(){
+  
   if(left){
-  if(p.charX == -sqw){
+  if(p[0].charX == -sqw){
     
       left = false;
-      p.charX += sqw;
+      p[0].charX += sqw;
       steps--;
     }
   }
+  
   if(right){
-  if(p.charX == width){
+  if(p[0].charX == width){
     
       right = false;
-      p.charX -= sqw;
+      p[0].charX -= sqw;
       steps--;
     }
   }
+  
   if(up){
-  if(p.charY == -sqh){
+  if(p[0].charY == -sqh){
     
       up = false;
-      p.charY += sqh;
+      p[0].charY += sqh;
       steps--;
     }
   }
+  
   if(down){
-  if(p.charY == height){
+  if(p[0].charY == height){
     
       down = false;
-      p.charY -= sqh;
+      p[0].charY -= sqh;
       steps--;
-    }
+    }    
   }
-}
+  
+}                    //close isBoundary
+
+
+/*******************************************
+move function, link to keyaction
+********************************************/ 
 
 void move() {
+  
   if(up){
-        p.set_y(p.charY - 45);
+        p[0].set_y(p[0].charY - 45);
         steps++;
       }
+      
       if(down){
-        p.set_y(p.charY + 45);
+        p[0].set_y(p[0].charY + 45);
         steps++;
       }
+      
       if(right){
-        p.set_x(p.charX + 40);
+        p[0].set_x(p[0].charX + 40);
         steps++;
       }
+      
       if(left){
-        p.set_x(p.charX - 40);
+        p[0].set_x(p[0].charX - 40);
         steps++;
       }
-}
-
+}                    //close move()
+/*----------------------------------------------------------------------------------------------*/
 void monsterappear() {
   if(room < 80)
   {
@@ -78,15 +96,5 @@ void monsterappear() {
         println("mob!");
         steps = 0;
       }
-  }
-  
-  
-}
-
-class Battle  {
-
-}
-
-class backpack  {
-
-}
+  }  
+}                    //close monsterappear()

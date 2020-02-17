@@ -1,5 +1,11 @@
+  /***********************
+  set player data
+  ***********************/
+
+
 class Player extends Units{
 	protected int str = 1, con = 1, intel = 1, wis = 1, agi = 1, exp = 0;
+  public final int type = 0;
 	Job job;
 	
 	public Player(){

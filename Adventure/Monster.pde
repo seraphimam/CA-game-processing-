@@ -1,3 +1,9 @@
+  /*******************************************
+  Monster generator
+  ********************************************/ 
+  
+  Random r = new Random();
+
 class Monster extends Units{
   private int type = 1;
   private String monster_type = "Normal";

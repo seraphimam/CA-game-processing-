@@ -1,8 +1,30 @@
-Bag bag = new Bag(8, 5);
+  /*******************************************
+   set item count and reading object
+  ********************************************/ 
+   
+   
+   protected int item_count = 3;
+   PImage item_pic[] = new PImage[item_count];
+
+
+
+  /*******************************************
+  key variable set here about bag
+  ********************************************/ 
+
+
+
 boolean inBag = false;
 boolean  bagopt = false;
 
+
+
+  /*******************************************
+  Class Bag
+  ********************************************/ 
 class Bag{
+  
+  
   public int[][] inv;
   public int row, col;
   int UI_width, UI_height, UI_dis;
@@ -10,6 +32,9 @@ class Bag{
   float square_width, square_height, vs, hs;  
   
   public Bag(int row, int col){
+    
+   
+    
     inv = new int[row][col];
     this.row = row;
     this.col = col;
@@ -19,15 +44,32 @@ class Bag{
     vertical_margin = (height - UI_height)/2;
     horizontal_margin = (width - 2*UI_width - UI_dis)/2;
     
-  }
+  }                    //close Bag()
+  
+  
+  /*******************************************
+  To display bag
+  ********************************************/ 
+
+  public void display_bag(){
+    PropertyPanel();
+    BagPanel();
+    BagSquare();
+  }                    //close display_bag()
+  
+/*-----------------------------------------------------------------------------------------------------*/
 
   public void PropertyPanel(){
     noStroke();
     fill(0);
     
     rect(horizontal_margin, vertical_margin, UI_width, UI_height);
-  
-  }
+    
+  }                    //close PropertyPanel()
+
+/*-----------------------------------------------------------------------------------------------------*/
+   
+
 
   public void BagPanel(){
     noStroke();
@@ -35,7 +77,12 @@ class Bag{
     
     rect((width + UI_dis)/2, vertical_margin, UI_width, UI_height);
   
-  }
+  }                    //close BagPanel()
+
+
+  /*******************************************
+  BagSquare base on rows and column
+  ********************************************/ 
 
   public void BagSquare(){
     
@@ -51,14 +98,22 @@ class Bag{
     for(int i = 0; i < row; i++){
       for(int j = 0; j < col; j++)
       {
-        image(item[j%3], (j+1)*hs + (j*square_width) + (width + UI_dis)/2, (i+1)*vs + (i * square_height) + vertical_margin, square_width, square_height);
-      }
+        image(item_pic[j%3], (j+1)*hs + (j*square_width) + (width + UI_dis)/2, (i+1)*vs + (i * square_height) + vertical_margin, square_width, square_height);
+        inv[i][j] = j%3;
+      }    //for loop(j)
+    }    //for loop (i)
+  }                    //close BagSquare()
+   
+}                    //cloase class Bag
+
+
+
+public void loaditemimage(){
+
+for(int i = 0; i < item_count; i++)
+    {
+      item_pic[i] = loadImage("src/item/map" + i + ".jpg");
     }
-  }
-  
-  public void display_bag(){
-    PropertyPanel();
-    BagPanel();
-    BagSquare();
-  }
+
+
 }

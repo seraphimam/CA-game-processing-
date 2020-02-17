@@ -1,28 +1,37 @@
-boolean inBattle = false;
+/*******************************************
+ have battle with monster
+********************************************/ 
 
-void battle_UI(){
-  background(0, 0, 83);
-  
-  fill(66, 100, 100);
-  rect(10,10, width/2 - 20, height*2/3 - 20);
- 
-  fill(40, 100, 100);
-  rect(width/2 + 10, 10, width/2 - 20, height*2/3 - 20);
-  
-  fill(80, 80, 100);
-  rect(10, height*2/3 + 10, width/4 - 5, height/3 - 20);
-  fill(0,0,100);
-  text(p.job.name, 100, height*2/3 + 100);
-  text("HP: " + p.cur_hp + " / " + p.max_hp, 100, height/2 + 200);
-  text("MP: " + p.cur_mp + " / " + p.max_mp, 100, height/2 + 300);
- 
-  fill(14, 100, 100);
-  rect(width/4 + 10, height*2/3 + 10, width/4 - 5, height/3 - 20);
-  rect(width/2 + 10, height*2/3 + 10, width/4 - 5, height/3 - 20);
-  rect(width*3/4 + 10, height*2/3 + 10, width/4 - 5, height/3 - 20);
+boolean inBattle = false;
+int battle_UI_margin = 10;
+int max_pt = 4, c_pt = 1;
+float c_width = (width - battle_UI_margin * 5)/4, c_height = height/3 - 2 * battle_UI_margin;
+float cx, cy = height*2/3 + battle_UI_margin;
+
+/*******************************************
+ calculation damage
+********************************************/
+
+void dmg(int x, int rec, int rec_type){
+  if(rec_type == 0){
+    p[rec].dec_hp(x);
+    p[rec].calc_stats();
+  }else{
+    //m[rec].dec_hp(x);
+    //m[rec].calc_stats();
+  }
 }
 
-void dmg(int x){
-  p.dec_hp(x);
-  p.calc_stats();
+
+
+void attack(int attacker, int defender, int def_type){
+  int damage = p[attacker].get_patk() - p[defender].get_pdef();
+  
+  dmg(damage, defender, def_type);
+}
+
+void skill_attack(int attacker, int defender, int def_type, int skill_id){
+  int damage = p[attacker].get_patk() - p[defender].get_pdef();
+  
+  dmg(damage, defender, def_type);
 }

@@ -1,3 +1,8 @@
+   /*******************************************
+     function about game data
+  ********************************************/ 
+ 
+ 
  void newGame(){
     
      font = loadFont("main_font.vlw");
@@ -5,7 +10,7 @@
     
     room = 1;
     jobchoicestyle();   
-  }  //close newGame()
+  }                    //close newGame()
   
   
   void load(){
@@ -22,7 +27,7 @@
       saved = true;
       
     }
-  }  //close load()
+  }                    //close load()
   
   
   void saveData(){
@@ -33,8 +38,8 @@
     }catch(Exception e){
       System.out.println("SAVE FAILED");
     }
-    output.println(p.job.code);
-    output.println(p.level);
-    output.println(p.exp);
+    output.println(p[0].job.code);
+    output.println(p[0].level);
+    output.println(p[0].exp);
     output.close();
-  }  //close saveData()
+  }                    //close saveData()

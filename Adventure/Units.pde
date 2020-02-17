@@ -1,11 +1,18 @@
+/*******************************************************************
+class units to set some basic data about unit
+*********************************************************************/
+
+
 class Units{
+  public int id;
 	protected int patk, pdef, matk, mdef, max_hp, max_mp, cur_hp, cur_mp, spd;
 	protected int hp_dec = 0, mp_dec = 0, level;
 	protected int bonus_str = 0, bonus_con = 0, bonus_intel = 0, bonus_wis = 0, bonus_agi = 0;
 	protected int bonus_patk = 0, bonus_pdef = 0, bonus_matk = 0, bonus_mdef = 0, bonus_hp = 0, bonus_mp = 0, bonus_spd = 0;
   protected int charX, charY;
-
-	public Units(){
+  PImage img;
+	
+public Units(){
 	}
 	
 	//temporary stats increments for equipments and buffs
@@ -63,6 +70,24 @@ class Units{
 	}
 	
 	//Setter
+  
+    public void set_img(String s, int type){
+    switch(type){
+      case 1:  
+        img = loadImage("src/player/" + s + ".png");
+        break;
+      case 2:
+        img = loadImage("src/boss/" + s + ".png");
+        break;
+      case 3:  
+        img = loadImage("src/elite/" + s + ".png");
+        break;
+      case 4:
+        img = loadImage("src/mobs/" + s + ".png");
+        break;
+    }
+  }
+
   public void set_x(int x){
     this.charX = x;
   }

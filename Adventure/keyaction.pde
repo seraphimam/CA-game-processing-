@@ -1,5 +1,15 @@
+/*******************************************************************
+function about keyboard, set variable first, all action base on room 
+*********************************************************************/
+
 boolean opt = false;
 int temp_room;
+boolean up = false, down = false, left = false, right = false;
+
+
+/*******************************************
+quick key and movement 
+********************************************/ 
 
 void keyPressed(){
     if(room > 1){
@@ -76,10 +86,19 @@ void keyPressed(){
               room = temp_room;
             }
               break;
+              
+            case 'x':
+            case 'X':
+              dmg(10,0,0);
+              break;
             
       }
     }
   }
+ 
+/*******************************************
+movement part
+********************************************/ 
   
   void keyReleased(){
     switch(keyCode){

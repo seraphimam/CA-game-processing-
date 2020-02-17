@@ -1,3 +1,8 @@
+/*******************************************************************
+function about mouse, set variable first, all action base on room 
+*********************************************************************/
+
+ 
  public void mousePressed(){
     
     float x = mouseX;
@@ -63,8 +68,9 @@
                 }
                 
                
-                p = new Player(p_class);
-                p.set_loc(400,450);
+                p[0] = new Player(p_class);
+                p[0].set_img(p[0].job.name,1);
+                p[0].set_loc(400,450);
                 
         
         break;
@@ -85,9 +91,11 @@
         
           if(x >= sqx && x <= sqx + bag.square_width  && y >=  sqy && y <= sqy + bag.square_height)
           {
-            bagoptX = mouseX+bag.hs;
-            bagoptY = mouseY;
+            if(bag.inv[i][j] > 0){
+              bagoptX = mouseX+bag.hs;
+              bagoptY = mouseY;
               room = 98;
+            }
           }
       }
     }
@@ -98,21 +106,20 @@
        
        
        case 98:
-         
-         if((x >= bagoptX && x<= bagoptX+bag.square_width*3) && (y >= bagoptY && y <= bagoptY+bag.square_height)){
+           if((x >= bagoptX && x<= bagoptX+bag.square_width*3) && (y >= bagoptY && y <= bagoptY+bag.square_height)){
+             
+             println("used");
            
-           println("used");
-         
-         }
-         
-         else if((x >= bagoptX && x<= bagoptX+bag.square_width*3) && (y > bagoptY + bag.square_height&& y <= bagoptY+bag.square_height * 2)){
-           println("droped");
+           }
            
-         }
-         
-         else{         
-           room = 91;
-         }
+           else if((x >= bagoptX && x<= bagoptX+bag.square_width*3) && (y > bagoptY + bag.square_height&& y <= bagoptY+bag.square_height * 2)){
+             println("droped");
+             
+           }
+           
+           else{         
+             room = 91;
+           }
          
        
          break;

@@ -1,9 +1,17 @@
+/*******************************************
+drawfunction, base on variable room to know where we are
+********************************************/ 
+
 String [] options = {"Main Menu", "Save", "Quit"};
 String[] job_list = {"Knight", "Priest", "Mage", "Paladin", "Ranger", "Assassin"};
 int mainY, saveY, exitY, text_height;
 
 float bagoptX, bagoptY;
 
+
+  /*******************************************
+            Main menu
+  ********************************************/
 
 
  void menu(){
@@ -29,7 +37,12 @@ float bagoptX, bagoptY;
     text("Exit", side_margin, height_margin+400);
  
     
-  }  //close menu()
+  }                    //close menu()
+  
+  
+  /*******************************************
+            job choice while newgame()
+  ********************************************/
   
   void jobchoicestyle(){
     background(0);
@@ -54,9 +67,9 @@ float bagoptX, bagoptY;
       text(job_list[i],boxX+boxwidth/2,i*60+boxY+40);
       
     }
-    
-           
-  }
+              
+  }                  //close jobchoicestyle()
+  
   
   void option(){
     
@@ -76,7 +89,8 @@ float bagoptX, bagoptY;
     mainY = boxY+boxheight/3;
     saveY = mainY + 70;
     exitY = saveY + 70;
-  }
+  }                    //close option()
+  
   
   void bag_option(){
     
@@ -92,6 +106,84 @@ float bagoptX, bagoptY;
     text("DROP",bagoptX + bag.square_width*1.5, bagoptY + bag.square_height*1.5);
     line(bagoptX, bagoptY + bag.square_height*2, bagoptX + bag.square_width* 3, bagoptY + bag.square_height*2);
     text("CANCEL",bagoptX + bag.square_width*1.5, bagoptY + bag.square_height*2.5);
-    
+     
+  }                    //close bag_option()
   
+  /*******************************************
+       UI while battle
+  ********************************************/
+      
+  void battle_UI(int enemy_count){
+  
+  float pc_width, pc_height, pcx, pcy, hp_percent;
+  float enemy_width, enemy_height, enemy_x, enemy_y;
+  float command_x, command_y, command_width, command_height;
+  
+  PImage test = loadImage("src/player/Mage.png");
+  
+  pc_width = (width/3.0f - 4.0f * battle_UI_margin)/ (float)(max_pt + 1);
+  pc_height = (height*2/3 - 3.0f * battle_UI_margin)/ (float)(max_pt + 2);
+  pcx = width*2/3.0f + battle_UI_margin + (float)(max_pt/2.0) * pc_width;
+  pcy = battle_UI_margin + pc_height/2.0f;
+  
+  enemy_width = (width/3.0f - 4.0f * battle_UI_margin)/ (float)(enemy_count+1);
+  enemy_height = (height*2/3.0f - 3.0f * battle_UI_margin)/ (float)(enemy_count+2);
+  enemy_x = battle_UI_margin + (float)(enemy_count-1) * enemy_width;
+  enemy_y = battle_UI_margin + enemy_height/2.0f;
+  
+  background(0,0,100);
+  /*
+  fill(66, 100, 100);
+  rect(battle_UI_margin, battle_UI_margin, width/2 - 2 * battle_UI_margin, height*2/3 - 2 * battle_UI_margin);
+  
+  fill(40, 100, 100);
+  rect(width/2 + battle_UI_margin, battle_UI_margin, width/2 - 2 * battle_UI_margin, height*2/3 - 2 * battle_UI_margin);
+  */
+  
+  //Draw enemies
+  for(int i = 0; i < enemy_count; i++){
+    image(test, enemy_x - i*enemy_width/2.0f, enemy_y + i*enemy_height*1.5f, enemy_width, enemy_height);
+  }
+  
+  //Draw player status boxes
+  for(int i = 0; i < max_pt; i++){
+    cx = c_width*i + (i+1)*battle_UI_margin;
+    p_box();
+  }
+  
+  //Draw player images and player status
+  for(int i = 0; i < c_pt; i++){
+    image(p[i].img, i*pc_width/2.0f + pcx, i*pc_height*1.5f + pcy, pc_width, pc_height);
+    
+    //over head hp bar
+    hp_percent = (float)p[i].get_cur_hp() / (float)p[i].get_max_hp();
+    stroke(0,100,0);
+    fill(0,0,100);
+    rect(i*pc_width/2.0f + pcx, i*pc_height*1.5f + pcy - battle_UI_margin * 2, pc_width, battle_UI_margin, 50);
+    fill(0,100,100);
+    rect(i*pc_width/2.0f + pcx, i*pc_height*1.5f + pcy - battle_UI_margin * 2, pc_width * hp_percent, battle_UI_margin, 50);
+    
+    //player stats
+    cx = c_width*i + (i+1)*battle_UI_margin;
+    p_stats(i);
+  }
+}
+
+
+
+      /*******************************************
+             alies and player status pannel
+      ********************************************/
+  
+  void p_box(){
+  fill(80, 80, 100);
+  rect(cx, cy, c_width, c_height);
+}
+
+  void p_stats(int c){
+    fill(0,0,100);
+    textAlign(CENTER);
+    text(p[c].job.name, cx + c_width/2, cy + c_height/4);
+    text("HP: " + p[c].cur_hp + " / " + p[0].max_hp, cx + c_width/2, cy + c_height/2);
+    text("MP: " + p[c].cur_mp + " / " + p[0].max_mp, cx + c_width/2, cy + c_height*3/4);
   }

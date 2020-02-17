@@ -1,3 +1,7 @@
+/*******************************************
+set job, totally 5 in count
+********************************************/ 
+int p_class = 0;
 int stats_count = 5;
 
 public class Jobs{
@@ -42,6 +46,9 @@ public class Jobs{
 }
 
 
+/*******************************************
+class job
+********************************************/ 
 
 class Job{
   public String name;
