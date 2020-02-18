@@ -87,11 +87,6 @@ void keyPressed(){
             case 'e':
             case 'E':
             
-            double rangeMin = 0.0;
-        double rangeMax = 0.5;
-        double dodge_rate = rangeMin + (rangeMax - rangeMin) * r.nextDouble();
-        print(+dodge_rate);
-            
             
               escape();
               break;
