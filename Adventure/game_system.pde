@@ -1,62 +1,10 @@
 /*******************************************
 key system inside game
 ********************************************/ 
+  Random r = new Random();
+  
+  
 
-void drawmap(int mapid){
-  
-  switch(mapid){
-      case 1:
-        bg = loadImage("src/backgroundimage/map1.png");
-        
-        room = 2;
-      break;
-      
-      case 2:
-      
-      break;
-  
-  }                //close switch map according to mapid(can not use room firstly)
-}                    // close drawmap()              
-
-void isBoundary(){
-  
-  if(left){
-  if(p[0].charX == -sqw){
-    
-      left = false;
-      p[0].charX += sqw;
-      steps--;
-    }
-  }
-  
-  if(right){
-  if(p[0].charX == width){
-    
-      right = false;
-      p[0].charX -= sqw;
-      steps--;
-    }
-  }
-  
-  if(up){
-  if(p[0].charY == -sqh){
-    
-      up = false;
-      p[0].charY += sqh;
-      steps--;
-    }
-  }
-  
-  if(down){
-  if(p[0].charY == height){
-    
-      down = false;
-      p[0].charY -= sqh;
-      steps--;
-    }    
-  }
-  
-}                    //close isBoundary
 
 
 /*******************************************
@@ -86,15 +34,30 @@ void move() {
       }
 }                    //close move()
 /*----------------------------------------------------------------------------------------------*/
+
+     /* friendly_unit = 1 monster: 1-2
+        friendly_unit = 2 monster: 2-3
+        friendly_unit = 3 monster: 3-4
+        
+     
+      */
 void monsterappear() {
   if(room < 80)
   {
-      encounter = r.nextInt(100);
-      encounter += steps;
+      encounter   = steps + r.nextInt(20);
       
       if(encounter >= 60){
-        println("mob!");
+        
+        int enemy_count =  r.nextInt(room % 3 ) + 1;
+        room = 90;
+        
+        battle_UI(enemy_count);
+        
+        
+        
         steps = 0;
+        
+        encounter = 0;
       }
   }  
 }                    //close monsterappear()

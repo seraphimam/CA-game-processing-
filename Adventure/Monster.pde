@@ -1,8 +1,8 @@
   /*******************************************
-  Monster generator
+  Monster status setting
   ********************************************/ 
   
-  Random r = new Random();
+
 
 class Monster extends Units{
   private int type = 1;

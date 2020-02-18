@@ -43,7 +43,7 @@ import library
 
    protected boolean saved = false;
    int room = 0; 
- 
+   int map_room = 0;
 
 
   /*******************************************
@@ -121,8 +121,7 @@ import library
     
       
       case 1:
-      
-      
+            
       jobchoicestyle();
       
         break;
@@ -133,7 +132,7 @@ import library
       background(bg);
       structureline();
       move();
-      isBoundary();
+      //isBoundary();
       fill(17, 64, 98, 75);
       //rect(0,0,500, 900);
       rect(p[0].charX, p[0].charY, 40, 45);
@@ -141,12 +140,11 @@ import library
       
       
       case 90:
-        
-        battle_UI(3);
-        
-        break;
+      
         
       
+        break;
+            
       case 91:
         
         background(0,0,100);
@@ -158,7 +156,7 @@ import library
       
       case 98:
       
-        background(255);
+        background(0,0,100);
         
         bag.display_bag();
         

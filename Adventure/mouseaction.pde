@@ -34,37 +34,37 @@ function about mouse, set variable first, all action base on room
                 if(( x >= boxX && x<= boxX+boxwidth) && (y >= 0*60+boxY+40-12.5 && y <= 0*60+boxY+40+12.5)){
                   println("Reading job1 status");
                   p_class = 1;
-                  drawmap(1);
+                  map.drawmap(1);
                 }
                 
                 if(( x >= boxX && x<= boxX+boxwidth) && (y >= 1*60+boxY+40-12.5 && y <= 1*60+boxY+40+12.5)){
                   println("Reading job2 status");
                   p_class = 2;
-                  drawmap(1);
+                  map.drawmap(1);
                 }
                 
                 if(( x >= boxX && x<= boxX+boxwidth) && (y >= 2*60+boxY+40-12.5 && y <= 2*60+boxY+40+12.5)){
                   println("Reading job3 status");
                   p_class = 3;
-                  drawmap(1);
+                  map.drawmap(1);
                 }
                 
                 if(( x >= boxX && x<= boxX+boxwidth) && (y >= 3*60+boxY+40-12.5 && y <= 3*60+boxY+40+12.5)){
                   println("Reading job4 status");
                   p_class = 4;
-                  drawmap(1);
+                  map.drawmap(1);
                 }
                 
                 if(( x >= boxX && x<= boxX+boxwidth) && (y >= 4*60+boxY+40-12.5 && y <= 4*60+boxY+40+12.5)){
                   println("Reading job5 status");
                   p_class = 5;
-                  drawmap(1);
+                  map.drawmap(1);
                 }
                 
                 if(( x >= boxX && x<= boxX+boxwidth) && (y >= 5*60+boxY+40-12.5 && y <= 5*60+boxY+40+12.5)){
                   println("Reading job6 status");
                   p_class = 6;
-                  drawmap(1);
+                  map.drawmap(1);
                 }
                 
                

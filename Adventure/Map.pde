@@ -1,6 +1,14 @@
 int map_width = width/sqw, map_height = height/sqh;
+int maproom; 
 
-public class Map{
+Map map = new Map();
+
+            
+
+
+ public class Map{
+  
+  
   protected boolean[][] wall = new boolean[map_height][map_width];
   protected int[][] exit;
   
@@ -12,6 +20,7 @@ public class Map{
     exit = new int[exit_count][exit_count];
   }
   
+  
   public void map_init(int exit_count){
     exit = new int[exit_count][exit_count];
     
@@ -21,6 +30,32 @@ public class Map{
       }
     }
   }
+  
+  public int get_map_room(){
+    return maproom;
+  }
+  
+  
+  public void drawmap(int mapid){
+    
+    background(0);
+    
+  switch(mapid){
+      case 1:
+        bg = loadImage("src/backgroundimage/map1.png");
+        
+        room = 2;
+        
+        maproom = room;        
+        
+      break;
+      
+      case 2:
+      
+      break;
+  
+  }                //close switch map according to mapid(can not use room firstly)
+}                    // close drawmap() 
   
   public boolean isWall(int x, int y){
     return this.wall[y][x];
@@ -33,4 +68,46 @@ public class Map{
   public void del_wall(int x, int y){
     this.wall[y][x] = false;    
   }
+  
+  void isBoundary(){
+  
+  if(left){
+  if(p[0].charX == -sqw){
+    
+      left = false;
+      p[0].charX += sqw;
+      steps--;
+    }
+  }
+  
+  if(right){
+  if(p[0].charX == width){
+    
+      right = false;
+      p[0].charX -= sqw;
+      steps--;
+    }
+  }
+  
+  if(up){
+  if(p[0].charY == -sqh){
+    
+      up = false;
+      p[0].charY += sqh;
+      steps--;
+    }
+  }
+  
+  if(down){
+  if(p[0].charY == height){
+    
+      down = false;
+      p[0].charY -= sqh;
+      steps--;
+    }    
+  }
+  
+}                    //close isBoundary
+  
+  
 }

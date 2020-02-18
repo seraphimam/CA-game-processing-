@@ -3,9 +3,8 @@ function about keyboard, set variable first, all action base on room
 *********************************************************************/
 
 boolean opt = false;
-int temp_room;
 boolean up = false, down = false, left = false, right = false;
-
+int temp_room;
 
 /*******************************************
 quick key and movement 
@@ -43,53 +42,58 @@ void keyPressed(){
           //println("change down: " + down);
           break;
           
-          case 'b':
-          case 'B':
-            if(!inBattle){
-              inBattle = true;
-              temp_room = room;
-              room = 90;
-              
-            }else{
-              inBattle = false;
-
-              room = temp_room;
-            }
-              break;
           
           case 'o':
           case 'O':
+            
+                      
             if(!opt){
               opt = true;
               temp_room = room;
               room = 99;
-              println("false opt: " + room);
+             
               
             }else{
               opt = false;
 
               room = temp_room;
-              println("true opt: " + opt);
+              
             }
               break;
               
           case 'q':
           case 'Q':
+          
+          
+          if(room != 90){            
             if(!inBag){
               inBag = true;
-              temp_room = room;
               room = 91;
-              
             }else{
               inBag = false;
 
-              room = temp_room;
+              room = map.get_map_room();
             }
-              break;
+          }
+          break;
+            
               
             case 'x':
             case 'X':
               dmg(10,0,0);
+              break;
+
+              
+            case 'e':
+            case 'E':
+            
+            double rangeMin = 0.0;
+        double rangeMax = 0.5;
+        double dodge_rate = rangeMin + (rangeMax - rangeMin) * r.nextDouble();
+        print(+dodge_rate);
+            
+            
+              escape();
               break;
             
       }
