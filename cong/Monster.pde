@@ -1,22 +1,34 @@
+//package adventure
 
-/*******************************************************************
-class units to set some basic data about unit
-*********************************************************************/
+public class Monster{
+	private int patk, pdef, matk, mdef, max_hp, max_mp, cur_hp, cur_mp, spd;
+	private int hp_dec = 0, mp_dec = 0, level;
+	private int bonus_str = 0, bonus_con = 0, bonus_intel = 0, bonus_wis = 0, bonus_agi = 0;
+	private int bonus_patk = 0, bonus_pdef = 0, bonus_matk = 0, bonus_mdef = 0, bonus_hp = 0, bonus_mp = 0, bonus_spd = 0;
 
-
-class Units{
-  public int id;
-
-	protected int patk, pdef, matk, mdef, max_hp, max_mp, cur_hp, cur_mp, spd;
-	protected int hp_dec = 0, mp_dec = 0, level;
-	protected int bonus_str = 0, bonus_con = 0, bonus_intel = 0, bonus_wis = 0, bonus_agi = 0;
-	protected int bonus_patk = 0, bonus_pdef = 0, bonus_matk = 0, bonus_mdef = 0, bonus_hp = 0, bonus_mp = 0, bonus_spd = 0;
-
-  protected int charX, charY;
-  PImage img;
+	public Monster(int lv, int pa, int pd, int ma, int md, int mhp, int mmp, int sp){
+		this.level = lv;
+		this.patk = pa;
+		this.pdef = pd;
+		this.matk = ma;
+		this.mdef = md;
+		this.spd = sp;
+		this.max_hp = mhp;
+		this.max_mp = mmp;
+		this.cur_hp = mhp;
+		this.cur_mp = mmp;
+	}
 	
-public Units(){
-
+	public void calc_stats(){
+		this.patk = patk + bonus_patk;
+		this.pdef = pdef + bonus_pdef;
+		this.matk = matk + bonus_matk;
+		this.mdef = mdef + bonus_mdef;
+		this.spd = spd + bonus_spd;
+		this.max_hp = max_hp + bonus_hp;
+		this.max_mp = max_mp + bonus_mp;
+		this.cur_hp = max_hp - hp_dec + bonus_hp;
+		this.cur_mp = max_mp - mp_dec + bonus_mp;
 	}
 	
 	//temporary stats increments for equipments and buffs
@@ -64,47 +76,7 @@ public Units(){
 		}
 	}
 	
-	//temporary decrease
-	public void dec_hp(int a){
-		this.hp_dec += a;
-	}
-	
-	public void dec_mp(int a){
-		this.mp_dec += a;
-	}
-	
 	//Setter
-  
-    public void set_img(String s, int type){
-    switch(type){
-      case 1:  
-        img = loadImage("src/player/" + s + ".png");
-        break;
-      case 2:
-        img = loadImage("src/boss/" + s + ".png");
-        break;
-      case 3:  
-        img = loadImage("src/elite/" + s + ".png");
-        break;
-      case 4:
-        img = loadImage("src/mobs/" + s + ".png");
-        break;
-    }
-  }
-
-  public void set_x(int x){
-    this.charX = x;
-  }
-  
-  public void set_y(int y){
-    this.charY = y;
-  }
-  
-  public void set_loc(int x, int y){
-    this.charX = x;
-    this.charY = y;
-  }
-  
 	public void set_level(int x){
 		this.level = x;
 	}
@@ -176,5 +148,22 @@ public Units(){
 	
 	public int get_max_mp(){
 		return this.max_mp;
+	}
+	
+	/***********************
+	*test print
+	***********************/
+	public void display_stats(){
+		System.out.println("Monster status: ");
+		System.out.println("LEVEL: " + this.level);
+		System.out.println("HP: " + this.cur_hp);
+		System.out.println("MP: " + this.cur_mp);
+		System.out.println("MAXHP: " + this.max_hp);
+		System.out.println("MAXMP: " + this.max_mp);
+		System.out.println("PATK: " + this.patk);
+		System.out.println("PDEF: " + this.pdef);
+		System.out.println("MATK: " + this.matk);
+		System.out.println("MDEF: " + this.mdef);
+		System.out.println("SPD: " + this.spd);
 	}
 }

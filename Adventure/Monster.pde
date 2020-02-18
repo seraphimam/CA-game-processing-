@@ -1,3 +1,10 @@
+
+  /*******************************************
+  Monster status setting
+  ********************************************/ 
+  
+
+
 class Monster extends Units{
   private int type = 1;
   private String monster_type = "Normal";
