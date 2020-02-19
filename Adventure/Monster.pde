@@ -11,7 +11,7 @@ class Monster extends Units{
   private String name;
   private int skillset = 0;
 
-	public Monster(int t, int lv, int pa, int pd, int ma, int md, int mhp, int mmp, int sp){
+	public Monster(int t, int lv, float pa, float pd, float ma, float md, float mhp, float mmp, float sp){
     this.type = t;
 		this.level = lv;
 		this.patk = pa;

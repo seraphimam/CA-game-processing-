@@ -1,13 +1,16 @@
 /*******************************************
 drawfunction, base on variable room to know where we are
 ********************************************/ 
-
+int mode = 0;
 String [] options = {"Main Menu", "Save", "Quit"};
 String[] job_list = {"Knight", "Priest", "Mage", "Paladin", "Ranger", "Assassin"};
 int mainY, saveY, exitY, text_height;
-
 float bagoptX, bagoptY;
-
+float pc_width, pc_height, pcx, pcy, hp_percent;
+  float enemy_width, enemy_height, enemy_x, enemy_y;
+  float command_x, command_y, command_radius;
+  
+  
 
   /*******************************************
             Main menu
@@ -114,12 +117,9 @@ float bagoptX, bagoptY;
   ********************************************/
       
   void battle_UI(int enemy_count){
-  
-  float pc_width, pc_height, pcx, pcy, hp_percent;
-  float enemy_width, enemy_height, enemy_x, enemy_y;
-  float command_x, command_y, command_width, command_height;
-  
+   
   PImage test = loadImage("src/player/Mage.png");
+  
   
   pc_width = (width/3.0f - 4.0f * battle_UI_margin)/ (float)(max_pt + 1);
   pc_height = (height*2/3 - 3.0f * battle_UI_margin)/ (float)(max_pt + 2);
@@ -130,6 +130,10 @@ float bagoptX, bagoptY;
   enemy_height = (height*2/3.0f - 3.0f * battle_UI_margin)/ (float)(enemy_count+2);
   enemy_x = battle_UI_margin + (float)(enemy_count-1) * enemy_width;
   enemy_y = battle_UI_margin + enemy_height/2.0f;
+  
+  command_radius = (width/3.0f - 4.0f * battle_UI_margin)/ 4.0;
+  command_x = width/2.0f;
+  command_y = height/3.0f + battle_UI_margin/2.0; 
   
   background(0,0,100);
   /*
@@ -163,10 +167,63 @@ float bagoptX, bagoptY;
     fill(0,100,100);
     rect(i*pc_width/2.0f + pcx, i*pc_height*1.5f + pcy - battle_UI_margin * 2, pc_width * hp_percent, battle_UI_margin, 50);
     
+   // if(death){
+    
+       
+    
+    //}
+    
+    
+    
     //player stats
     cx = c_width*i + (i+1)*battle_UI_margin;
     p_stats(i);
   }
+  
+  //if(mode == 1){
+    strokeWeight(battle_UI_margin);
+    stroke(24, 100, 100);
+    fill(12, 50,100,20);
+    ellipse(command_x, command_y, command_radius * 2, command_radius * 2);
+    for(int i = 0; i < 4; i++){
+      if(i % 2 == 0){
+        noStroke();
+        fill(65, 100, 100);
+        ellipse(command_x, command_y + (i - 1) * command_radius, command_radius, command_radius);
+      }else{
+        noStroke();
+        fill(65, 100, 100);
+        ellipse(command_x + (i - 2) * command_radius, command_y, command_radius, command_radius);
+      }
+      
+      switch(i){
+        case 0:
+          textSize(command_radius/ 3.0);
+          textAlign(CENTER, CENTER);
+          fill(0,0,100);
+          text("Attack", command_x, command_y + (i - 1) * command_radius);
+          break;
+        case 1:
+          textSize(command_radius/ 3.0);
+          textAlign(CENTER, CENTER);
+          fill(0,0,100);
+          text("Item", command_x + (i - 2) * command_radius, command_y);
+          break;
+        case 2:
+          textSize(command_radius/ 3.0);
+          textAlign(CENTER, CENTER);
+          fill(0,0,100);
+          text("Flee", command_x, command_y + (i - 1) * command_radius);
+          break;
+        case 3:
+          textSize(command_radius/ 3.0);
+          textAlign(CENTER, CENTER);
+          fill(0,0,100);
+          text("Skill", command_x + (i - 2) * command_radius, command_y);
+          break;
+      }
+    }
+  //}
 }
 
 

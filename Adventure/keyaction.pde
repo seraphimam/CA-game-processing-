@@ -83,14 +83,6 @@ void keyPressed(){
               dmg(10,0,0);
               break;
 
-              
-            case 'e':
-            case 'E':
-            
-            
-              escape();
-              break;
-            
       }
     }
   }

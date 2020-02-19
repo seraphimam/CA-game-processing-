@@ -5,7 +5,8 @@
 
 
 class Player extends Units{
-	protected int str = 1, con = 1, intel = 1, wis = 1, agi = 1, exp = 0;
+	protected float str = 1, con = 1, intel = 1, wis = 1, agi = 1;
+  protected int exp = 0;
   public final int type = 0;
 	Job job;
 	
@@ -17,8 +18,8 @@ class Player extends Units{
     init_stats();
     calc_stats();
 	}
-	
-	public Player(int x, int lv, int st, int co, int in, int wi, int ag){
+
+	public Player(int x, int lv, float st, float co, float in, float wi, float ag){
     job = new Job(x);
 		this.level = lv;
 		this.str = st;
@@ -65,23 +66,23 @@ class Player extends Units{
 		this.exp += ex;
 	}
 	
-	public void inc_str(int a){
+	public void inc_str(float a){
 		this.bonus_str += a;
 	}
 	
-	public void inc_con(int a){
+	public void inc_con(float a){
 		this.bonus_con += a;
 	}
 	
-	public void inc_int(int a){
+	public void inc_int(float a){
 		this.bonus_intel += a;
 	}
 	
-	public void inc_wis(int a){
+	public void inc_wis(float a){
 		this.bonus_wis += a;
 	}
 	
-	public void inc_agi(int a){
+	public void inc_agi(float a){
 		this.bonus_agi += a;
 	}
 	
@@ -91,23 +92,23 @@ class Player extends Units{
 		this.exp = x;
 	}
 	
-	public void set_str(int x){
+	public void set_str(float x){
 		this.str = x;
 	}
 	
-	public void set_con(int x){
+	public void set_con(float x){
 		this.con = x;
 	}
 	
-	public void set_intel(int x){
+	public void set_intel(float x){
 		this.intel = x;
 	}
 	
-	public void set_wis(int x){
+	public void set_wis(float x){
 		this.wis = x;
 	}
 	
-	public void set_agi(int x){
+	public void set_agi(float x){
 		this.agi = x;
 	}
 	
@@ -118,23 +119,23 @@ class Player extends Units{
 		return this.exp;
 	}
 	
-	public int get_str(){
+	public float get_str(){
 		return this.str;
 	}
 	
-	public int get_con(){
+	public float get_con(){
 		return this.con;
 	}
 	
-	public int get_intel(){
+	public float get_intel(){
 		return this.intel;
 	}
 	
-	public int get_wis(){
+	public float get_wis(){
 		return this.wis;
 	}
 	
-	public int get_agi(){
+	public float get_agi(){
 		return this.agi;
 	}
 	

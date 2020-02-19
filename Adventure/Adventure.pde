@@ -5,6 +5,7 @@ import library
   import processing.core.PFont;  
   import java.io.*;
   import java.util.Random;
+  import java.lang.Math.*;
 
 
  
@@ -49,7 +50,8 @@ import library
   /*******************************************
         init class object
   ********************************************/ 
-   
+    
+    Monster[] m = new Monster[4];
     Player[] p = new Player[4];
     Bag bag = new Bag(8, 5);        //Bag(row,column)
   
@@ -140,9 +142,9 @@ import library
       
       
       case 90:
-      
-        
-      
+               
+        battle_UI(enemy_count);
+              
         break;
             
       case 91:
