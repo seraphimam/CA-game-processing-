@@ -1,12 +1,13 @@
 /*******************************************************************
 function about mouse, set variable first, all action base on room 
 *********************************************************************/
-
+int trial = 0;
  
  public void mousePressed(){
     
     float x = mouseX;
     float y = mouseY;
+    float distance;
     
     switch (room)
     {
@@ -78,7 +79,19 @@ function about mouse, set variable first, all action base on room
  //---------------------------------------------------------------------------------------      
  /*******************************************
  */
-       
+       case 90:
+         /*
+         switch(mode){
+           case 1:
+             break;
+         }
+         */
+         distance = (float) ( Math.sqrt(( (x - command_x) * (x - command_x) + (y - (command_y + command_radius)) * (y - (command_y + command_radius)) ) ) );
+         if(distance <= command_radius / 2.0){
+           escape();
+         }
+         break;
+         
        case 91:  //  item selct drop-down menu
             
             

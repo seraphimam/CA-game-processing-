@@ -4,7 +4,7 @@ key system inside game
   Random r = new Random();
   
   
-
+  int enemy_count;
 
 
 /*******************************************
@@ -44,17 +44,15 @@ void move() {
 void monsterappear() {
   if(room < 80)
   {
+    
       encounter   = steps + r.nextInt(20);
       
       if(encounter >= 60){
         
-        int enemy_count =  r.nextInt(room % 3 ) + 1;
+        enemy_count =  r.nextInt(room % 3 ) + 1;
+        
         room = 90;
-        
-        battle_UI(enemy_count);
-        
-        
-        
+                
         steps = 0;
         
         encounter = 0;

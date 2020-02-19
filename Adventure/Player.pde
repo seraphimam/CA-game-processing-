@@ -1,23 +1,25 @@
+
   /***********************
   set player data
   ***********************/
 
 
 class Player extends Units{
-	protected int str = 1, con = 1, intel = 1, wis = 1, agi = 1, exp = 0;
+	protected float str = 1, con = 1, intel = 1, wis = 1, agi = 1;
+  protected int exp = 0;
   public final int type = 0;
 	Job job;
 	
 	public Player(){
 	}
-	
+
 	public Player(int x){
 		job = new Job(x);
     init_stats();
     calc_stats();
 	}
-	
-	public Player(int x, int lv, int st, int co, int in, int wi, int ag){
+
+	public Player(int x, int lv, float st, float co, float in, float wi, float ag){
     job = new Job(x);
 		this.level = lv;
 		this.str = st;
@@ -43,13 +45,13 @@ class Player extends Units{
 		this.wis = wis + bonus_wis;
 		this.agi = agi + bonus_agi;
 
-		this.patk = str * job.amplifier[0] + level * (2 + job.amplifier[0]) + bonus_patk;
-		this.pdef = con * job.amplifier[1]  + level * (1 + job.amplifier[1]) + bonus_pdef;
-		this.matk = intel * job.amplifier[2]  + level * (2 + job.amplifier[2]) + bonus_matk;
-		this.mdef = wis * job.amplifier[3] + level * job.amplifier[3] + bonus_mdef;
-		this.spd = agi * job.amplifier[4] + level * (1 + job.amplifier[4]) + bonus_spd;
-		this.max_hp = con * (3 + job.amplifier[5])  + level * (5 + job.amplifier[5]) + bonus_hp;
-		this.max_mp = wis * (2 + job.amplifier[6]) + level * (3 + job.amplifier[6])  + bonus_mp;
+		this.patk = str * job.amplifier[0] + level + bonus_patk;
+		this.pdef = con * job.amplifier[1]  + level * 3 + bonus_pdef;
+		this.matk = intel * job.amplifier[2]  + level * 2 + bonus_matk;
+		this.mdef = wis * job.amplifier[3] + level * 3 + bonus_mdef;
+		this.spd = agi * job.amplifier[4] + level + bonus_spd;
+		this.max_hp = con * job.amplifier[5]  + level * 2 + bonus_hp;
+		this.max_mp = wis * job.amplifier[6]  + bonus_mp;
 
 		this.cur_hp = max_hp - hp_dec + bonus_hp;
 		this.cur_mp = max_mp - mp_dec + bonus_mp;
@@ -64,23 +66,23 @@ class Player extends Units{
 		this.exp += ex;
 	}
 	
-	public void inc_str(int a){
+	public void inc_str(float a){
 		this.bonus_str += a;
 	}
 	
-	public void inc_con(int a){
+	public void inc_con(float a){
 		this.bonus_con += a;
 	}
 	
-	public void inc_int(int a){
+	public void inc_int(float a){
 		this.bonus_intel += a;
 	}
 	
-	public void inc_wis(int a){
+	public void inc_wis(float a){
 		this.bonus_wis += a;
 	}
 	
-	public void inc_agi(int a){
+	public void inc_agi(float a){
 		this.bonus_agi += a;
 	}
 	
@@ -90,23 +92,23 @@ class Player extends Units{
 		this.exp = x;
 	}
 	
-	public void set_str(int x){
+	public void set_str(float x){
 		this.str = x;
 	}
 	
-	public void set_con(int x){
+	public void set_con(float x){
 		this.con = x;
 	}
 	
-	public void set_intel(int x){
+	public void set_intel(float x){
 		this.intel = x;
 	}
 	
-	public void set_wis(int x){
+	public void set_wis(float x){
 		this.wis = x;
 	}
 	
-	public void set_agi(int x){
+	public void set_agi(float x){
 		this.agi = x;
 	}
 	
@@ -117,23 +119,23 @@ class Player extends Units{
 		return this.exp;
 	}
 	
-	public int get_str(){
+	public float get_str(){
 		return this.str;
 	}
 	
-	public int get_con(){
+	public float get_con(){
 		return this.con;
 	}
 	
-	public int get_intel(){
+	public float get_intel(){
 		return this.intel;
 	}
 	
-	public int get_wis(){
+	public float get_wis(){
 		return this.wis;
 	}
 	
-	public int get_agi(){
+	public float get_agi(){
 		return this.agi;
 	}
 	

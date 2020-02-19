@@ -13,7 +13,7 @@ float cx, cy = height*2/3 + battle_UI_margin;
  calculation damage
 ********************************************/
 
-void dmg(int x, int rec, int rec_type){
+void dmg(float x, int rec, int rec_type){
   if(rec_type == 0){
     p[rec].dec_hp(x);
     p[rec].calc_stats();
@@ -26,11 +26,11 @@ void dmg(int x, int rec, int rec_type){
 
 void attack(int attacker, int defender, int def_type){
   
-  int damage = p[attacker].get_patk() - p[defender].get_pdef();
+  float damage = p[attacker].get_patk() - p[defender].get_pdef();
   
     dodge = false;
   
-   if_dodge(attacker,defender);
+   if_dodge(attacker,defender, (def_type + 1)% 2);
   
   
   if(dodge){
@@ -58,7 +58,7 @@ void attack(int attacker, int defender, int def_type){
 
 
 void skill_attack(int attacker, int defender, int def_type, int skill_id){
-  int damage = p[attacker].get_patk() - p[defender].get_pdef();
+  float damage = p[attacker].get_patk() - p[defender].get_pdef();
   
   dmg(damage, defender, def_type);
 }
@@ -94,25 +94,26 @@ void escape(){
       
 }
 
-boolean if_dodge(int attacker,int defender){
+void if_dodge(int attacker,int defender, int attacker_type){
     
-     if((2*p[defender].get_agi())-p[attacker].get_agi() < 0){
        
-       int dodge_rate = r.nextInt(20) + (p[defender].get_agi()-p[attacker].get_agi())/p[defender].get_agi();
+       float dodge_rate;
        
-        if(dodge_rate >= 50)
+       if(attacker_type == 1){
+         dodge_rate = (m[defender].get_spd()-p[attacker].get_spd())/m[defender].get_spd();
+       }else{
+         dodge_rate = (p[defender].get_spd()-m[attacker].get_spd())/p[defender].get_spd();
+       }
+       
+        if(r.nextInt(10000) < dodge_rate * 10000)
         {
         
           dodge = true;
         
-        }
-        else{
-        
+        }else{
           dodge = false;
         }
-     }
      
   
-    return dodge;
 
 }

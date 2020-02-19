@@ -1,50 +1,55 @@
+//changed
 /*******************************************************************
 class units to set some basic data about unit
 *********************************************************************/
 
 
 class Units{
-  public int id;
-	protected int patk, pdef, matk, mdef, max_hp, max_mp, cur_hp, cur_mp, spd;
-	protected int hp_dec = 0, mp_dec = 0, level;
-	protected int bonus_str = 0, bonus_con = 0, bonus_intel = 0, bonus_wis = 0, bonus_agi = 0;
-	protected int bonus_patk = 0, bonus_pdef = 0, bonus_matk = 0, bonus_mdef = 0, bonus_hp = 0, bonus_mp = 0, bonus_spd = 0;
+  protected int id;
+  public int level;
+  protected boolean alive = true;
+	protected float patk, pdef, matk, mdef, max_hp, max_mp, cur_hp, cur_mp, spd;
+	protected float hp_dec = 0, mp_dec = 0;
+	protected float bonus_str = 0, bonus_con = 0, bonus_intel = 0, bonus_wis = 0, bonus_agi = 0;
+	protected float bonus_patk = 0, bonus_pdef = 0, bonus_matk = 0, bonus_mdef = 0, bonus_hp = 0, bonus_mp = 0, bonus_spd = 0;
+
   protected int charX, charY;
   PImage img;
 	
-public Units(){
+  public Units(){
+
 	}
 	
 	//temporary stats increments for equipments and buffs
-	public void inc_patk(int a){
+	public void inc_patk(float a){
 		this.bonus_patk += a;
 	}
 	
-	public void inc_pdef(int a){
+	public void inc_pdef(float a){
 		this.bonus_pdef += a;
 	}
 	
-	public void inc_matk(int a){
+	public void inc_matk(float a){
 		this.bonus_matk += a;
 	}
 	
-	public void inc_mdef(int a){
+	public void inc_mdef(float a){
 		this.bonus_mdef += a;
 	}
 	
-	public void inc_spd(int a){
+	public void inc_spd(float a){
 		this.bonus_spd += a;
 	}
 	
-	public void inc_hp(int a){
+	public void inc_hp(float a){
 		this.bonus_hp += a;
 	}
 	
-	public void inc_mp(int a){
+	public void inc_mp(float a){
 		this.bonus_mp += a;
 	}
 	
-	public void rec_hp(int a){
+	public void rec_hp(float a){
 		if(this.hp_dec >= a){
 			this.hp_dec -= a;
 		}else{
@@ -52,7 +57,7 @@ public Units(){
 		}
 	}
 	
-	public void rec_mp(int a){
+	public void rec_mp(float a){
 		if(this.mp_dec >= a){
 			this.mp_dec -= a;
 		}else{
@@ -61,13 +66,26 @@ public Units(){
 	}
 	
 	//temporary decrease
-	public void dec_hp(int a){
+	public void dec_hp(float a){
 		this.hp_dec += a;
 	}
 	
-	public void dec_mp(int a){
+	public void dec_mp(float a){
 		this.mp_dec += a;
 	}
+
+  //dead and alive
+  public void dead(){
+    this.alive = false;
+  }
+  
+  public void ress(){
+     this.alive = true;
+  }
+  
+  //attack
+  public void attack(){
+  }
 	
 	//Setter
   
@@ -105,72 +123,76 @@ public Units(){
 		this.level = x;
 	}
 	
-	public void set_patk(int x){
+	public void set_patk(float x){
 		this.patk = x;
 	}
 	
-	public void set_pdef(int x){
+	public void set_pdef(float x){
 		this.pdef = x;
 	}
 	
-	public void set_matk(int x){
+	public void set_matk(float x){
 		this.matk = x;
 	}
 	
-	public void set_mdef(int x){
+	public void set_mdef(float x){
 		this.mdef = x;
 	}
 	
-	public void set_spd(int x){
+	public void set_spd(float x){
 		this.spd = x;
 	}
 	
-	public void set_max_hp(int x){
+	public void set_max_hp(float x){
 		this.max_hp = x;
 	}
 	
-	public void set_max_mp(int x){
+	public void set_max_mp(float x){
 		this.max_mp = x;
 	}
 	
 	//Getter
+  public boolean is_alive(){
+    return this.alive;
+  }
+  
 	public int get_level(){
 		return this.level;
 	}
 	
-	public int get_patk(){
+	public float get_patk(){
 		return this.patk;
 	}
 	
-	public int get_pdef(){
+	public float get_pdef(){
 		return this.pdef;
 	}
 	
-	public int get_matk(){
+	public float get_matk(){
 		return this.matk;
 	}
 	
-	public int get_mdef(){
+	public float get_mdef(){
 		return this.mdef;
 	}
 	
-	public int get_spd(){
+	public float get_spd(){
 		return this.spd;
 	}
 	
-	public int get_cur_hp(){
+	public float get_cur_hp(){
 		return this.cur_hp;
 	}
 	
-	public int get_cur_mp(){
+	public float get_cur_mp(){
 		return this.cur_mp;
 	}
 	
-	public int get_max_hp(){
+	public float get_max_hp(){
 		return this.max_hp;
 	}
 	
-	public int get_max_mp(){
+	public float get_max_mp(){
 		return this.max_mp;
 	}
 }
