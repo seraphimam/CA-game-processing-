@@ -43,13 +43,13 @@ class Player extends Units{
 		this.wis = wis + bonus_wis;
 		this.agi = agi + bonus_agi;
 
-		this.patk = str * job.amplifier[0] + level + bonus_patk;
-		this.pdef = con * job.amplifier[1]  + level * 3 + bonus_pdef;
-		this.matk = intel * job.amplifier[2]  + level * 2 + bonus_matk;
-		this.mdef = wis * job.amplifier[3] + level * 3 + bonus_mdef;
-		this.spd = agi * job.amplifier[4] + level + bonus_spd;
-		this.max_hp = con * job.amplifier[5]  + level * 2 + bonus_hp;
-		this.max_mp = wis * job.amplifier[6]  + bonus_mp;
+		this.patk = str * job.amplifier[0] + level * (2 + job.amplifier[0]) + bonus_patk;
+		this.pdef = con * job.amplifier[1]  + level * (1 + job.amplifier[1]) + bonus_pdef;
+		this.matk = intel * job.amplifier[2]  + level * (2 + job.amplifier[2]) + bonus_matk;
+		this.mdef = wis * job.amplifier[3] + level * job.amplifier[3] + bonus_mdef;
+		this.spd = agi * job.amplifier[4] + level * (1 + job.amplifier[4]) + bonus_spd;
+		this.max_hp = con * (3 + job.amplifier[5])  + level * (5 + job.amplifier[5]) + bonus_hp;
+		this.max_mp = wis * (2 + job.amplifier[6]) + level * (3 + job.amplifier[6])  + bonus_mp;
 
 		this.cur_hp = max_hp - hp_dec + bonus_hp;
 		this.cur_mp = max_mp - mp_dec + bonus_mp;
