@@ -1,12 +1,13 @@
 /*******************************************
-set job, totally 5 in count
+set job, 6 in total
 ********************************************/ 
 int p_class = 0;
 int stats_count = 5;
 
 public class Jobs{
-  protected int patkAmp, pdefAmp, matkAmp, mdefAmp, spdAmp, hpAmp, mpAmp;
-  protected int[] base_stats = new int[stats_count];
+  protected float patkAmp, pdefAmp, matkAmp, mdefAmp, spdAmp, hpAmp, mpAmp;
+  protected float[] base_stats = new float[stats_count];
+  protected float[] stats_inc = new float[stats_count];
   
   public Jobs(){
     patkAmp = 1;
@@ -18,30 +19,34 @@ public class Jobs{
     mpAmp = 1;
   }
   
-  public int getPatkAmp(){
+  public float getPatkAmp(){
     return this.patkAmp;
   }
-  public int getPdefAmp(){
+  public float getPdefAmp(){
     return this.pdefAmp;
   }
-  public int getMatkAmp(){
+  public float getMatkAmp(){
     return this.matkAmp;
   }
-  public int getMdefAmp(){
+  public float getMdefAmp(){
     return this.mdefAmp;
   }
-  public int getSpdAmp(){
+  public float getSpdAmp(){
     return this.spdAmp;
   }
-  public int getHpAmp(){
+  public float getHpAmp(){
     return this.hpAmp;
   }
-  public int getMpAmp(){
+  public float getMpAmp(){
     return this.mpAmp;
   }
   
-  public int[] get_base_stats(){
+  public float[] get_base_stats(){
     return this.base_stats;
+  }
+  
+  public float[] get_stats_inc(){
+    return this.stats_inc;
   }
 }
 
@@ -52,9 +57,9 @@ class job
 
 class Job{
   public String name;
-  public int[] amplifier = new int[7];
+  public float[] amplifier = new float[7];
   public int code = 0;
-  public int[] stats = new int[stats_count];
+  public float[] stats = new float[stats_count];
 
   public Job(){
   }
@@ -170,88 +175,154 @@ public class Knight extends Jobs{
   //Skill skill = new Skill(1);
   
   public Knight(){
-    patkAmp = 3;
-    pdefAmp = 4;
-    matkAmp = 1;
-    mdefAmp = 3;
-    spdAmp = 3;
-    hpAmp = 5;
-    mpAmp = 3;
+    base_stats[0] = 7.0;
+    base_stats[1] = 11.0;
+    base_stats[2] = 2.0;
+    base_stats[3] = 6.0;
+    base_stats[4] = 4.0;
     
-    base_stats[0] = 9;
-    base_stats[1] = 10;
-    base_stats[2] = 3;
-    base_stats[3] = 6;
-    base_stats[4] = 4;
+    stats_inc[0] = 1.0;
+    stats_inc[1] = 2.0;
+    stats_inc[2] = 0.0;
+    stats_inc[3] = 1.0;
+    stats_inc[4] = 1.0;
+    
+    patkAmp = 1.5;
+    pdefAmp = 2.0;
+    matkAmp = 0.5;
+    mdefAmp = 1.5;
+    spdAmp = 1.0;
+    hpAmp = 2.5;
+    mpAmp = 1.5;
   }
 }
 
-  public class Mage extends Jobs{
-  //Skill skill = new Skill(3);
-  
-  public Mage(){
-    patkAmp = 1;
-    pdefAmp = 1;
-    matkAmp = 6;
-    mdefAmp = 3;
-    spdAmp = 2;
-    hpAmp = 3;
-    mpAmp = 4;
-  }
-}
-
- class Paladin extends Jobs{
+class Paladin extends Jobs{
   //Skill skill = new Skill(4);
   
   public Paladin(){
-    patkAmp = 2;
-    pdefAmp = 3;
-    matkAmp = 2;
-    mdefAmp = 4;
-    spdAmp = 2;
-    hpAmp = 5;
-    mpAmp = 4;
+    base_stats[0] = 5.0;
+    base_stats[1] = 7.0;
+    base_stats[2] = 5.0;
+    base_stats[3] = 9.0;
+    base_stats[4] = 4.0;
+    
+    stats_inc[0] = 1.0;
+    stats_inc[1] = 1.0;
+    stats_inc[2] = 1.0;
+    stats_inc[3] = 2.0;
+    stats_inc[4] = 0.0;
+    
+    patkAmp = 1.2;
+    pdefAmp = 1.5;
+    matkAmp = 1.5;
+    mdefAmp = 2.0;
+    spdAmp = 0.8;
+    hpAmp = 2.5;
+    mpAmp = 2.0;
   }
 }
 
- class Priest extends Jobs{
-  //Skill skill = new Skill(2);
-  
-  public Priest(){
-    patkAmp = 1;
-    pdefAmp = 2;
-    matkAmp = 2;
-    mdefAmp = 4;
-    spdAmp = 2;
-    hpAmp = 4;
-    mpAmp = 5;
-  }
-}
-
- class Ranger extends Jobs{
+class Ranger extends Jobs{
   //Skill skill = new Skill(5);
   
   public Ranger(){
-    patkAmp = 3;
-    pdefAmp = 2;
-    matkAmp = 2;
-    mdefAmp = 2;
-    spdAmp = 4;
-    hpAmp = 5;
-    mpAmp = 3;
+    base_stats[0] = 7.0;
+    base_stats[1] = 5.0;
+    base_stats[2] = 7.0;
+    base_stats[3] = 2.0;
+    base_stats[4] = 9.0;
+    
+    stats_inc[0] = 1.0;
+    stats_inc[1] = 1.0;
+    stats_inc[2] = 1.0;
+    stats_inc[3] = 2.0;
+    stats_inc[4] = 0.0;
+    
+    patkAmp = 2.0;
+    pdefAmp = 1.0;
+    matkAmp = 2.0;
+    mdefAmp = 1.6;
+    spdAmp = 2.2;
+    hpAmp = 1.8;
+    mpAmp = 1.6;
   }
 }
 
- class Assassin extends Jobs{
+class Assassin extends Jobs{
   //Skill skill = new Skill(5);
   
   public Assassin(){
-    patkAmp = 4;
-    pdefAmp = 1;
-    matkAmp = 3;
+    base_stats[0] = 8.0;
+    base_stats[1] = 5.0;
+    base_stats[2] = 1.0;
+    base_stats[3] = 6.0;
+    base_stats[4] = 10.0;
+    
+    stats_inc[0] = 1.0;
+    stats_inc[1] = 1.0;
+    stats_inc[2] = 0.6;
+    stats_inc[3] = 1.0;
+    stats_inc[4] = 2.0;
+    
+    patkAmp = 2.2;
+    pdefAmp = 1.4;
+    matkAmp = 0.5;
+    mdefAmp = 1.6;
+    spdAmp = 2.5;
+    hpAmp = 1.5;
+    mpAmp = 1.2;
+  }
+}
+
+public class Mage extends Jobs{
+  //Skill skill = new Skill(3);
+  
+  public Mage(){
+    base_stats[0] = 1.0;
+    base_stats[1] = 3.0;
+    base_stats[2] = 13.0;
+    base_stats[3] = 8.0;
+    base_stats[4] = 5.0;
+    
+    stats_inc[0] = 0.0;
+    stats_inc[1] = 1.0;
+    stats_inc[2] = 2.0;
+    stats_inc[3] = 2.0;
+    stats_inc[4] = 0.0;
+    
+    patkAmp = 0.2;
+    pdefAmp = 1.0;
+    matkAmp = 2.8;
     mdefAmp = 2;
-    spdAmp = 5;
-    hpAmp = 2;
-    mpAmp = 2;
+    spdAmp = 1.0;
+    hpAmp = 1.0;
+    mpAmp = 2.2;
+  }
+}
+
+class Priest extends Jobs{
+  //Skill skill = new Skill(2);
+  
+  public Priest(){
+    base_stats[0] = 2.0;
+    base_stats[1] = 6.0;
+    base_stats[2] = 7.0;
+    base_stats[3] = 10.0;
+    base_stats[4] = 5.0;
+    
+    stats_inc[0] = 0.0;
+    stats_inc[1] = 1.0;
+    stats_inc[2] = 1.0;
+    stats_inc[3] = 2.0;
+    stats_inc[4] = 1.0;
+    
+    patkAmp = 1.0;
+    pdefAmp = 1.5;
+    matkAmp = 1.0;
+    mdefAmp = 1.8;
+    spdAmp = 1.2;
+    hpAmp = 1.1;
+    mpAmp = 2.3;
   }
 }

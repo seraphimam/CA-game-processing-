@@ -1,4 +1,4 @@
-
+//changed
 /*******************************************************************
 class units to set some basic data about unit
 *********************************************************************/
@@ -6,7 +6,7 @@ class units to set some basic data about unit
 
 class Units{
   public int id;
-
+  protected boolean alive = true;
 	protected int patk, pdef, matk, mdef, max_hp, max_mp, cur_hp, cur_mp, spd;
 	protected int hp_dec = 0, mp_dec = 0, level;
 	protected int bonus_str = 0, bonus_con = 0, bonus_intel = 0, bonus_wis = 0, bonus_agi = 0;
@@ -72,6 +72,15 @@ public Units(){
 	public void dec_mp(int a){
 		this.mp_dec += a;
 	}
+
+  //dead and alive
+  public void dead(){
+    this.alive = false;
+  }
+  
+  public void ress(){
+     this.alive = true;
+  }
 	
 	//Setter
   
@@ -138,6 +147,10 @@ public Units(){
 	}
 	
 	//Getter
+  public boolean is_alive(){
+    return this.alive;
+  }
+  
 	public int get_level(){
 		return this.level;
 	}

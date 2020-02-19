@@ -61,8 +61,8 @@ void keyPressed(){
             }
               break;
               
-          case 'q':
-          case 'Q':
+          case 'b':
+          case 'B':
           
           
           if(room != 90){            
