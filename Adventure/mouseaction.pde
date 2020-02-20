@@ -98,8 +98,9 @@ boolean move_item = false, select_item = false;
        
        case 98:
            if((x >= bagoptX && x<= bagoptX+bag.square_width*3) && (y >= bagoptY && y <= bagoptY+bag.square_height)){
-             
-             println("used");
+             println("x: " + bag_x + " y: " + bag_y);
+             println("used " + (bag_y * 5 + bag_x + 1));
+             room = 91;
            
            }
            
@@ -154,14 +155,16 @@ void mouseDragged(){
     move_item = true;
     
     image(item_pic[temp_item_code], mouseX - (bag.square_width/2), mouseY - (bag.square_height/2), bag.square_width, bag.square_height);
-    
+    //room = 91;
   }
 }
   
 void mouseReleased(){
   float sqx, sqy;
   
-  if(move_item){
+  switch(room){
+    case 91:
+    if(move_item){
             
           for(int i = 0; i < bag.row; i++){
             for(int j = 0; j < bag.col; j++)
@@ -176,7 +179,6 @@ void mouseReleased(){
                    if(bag.inv[i][j] > 0){
                      bagoptX = mouseX+bag.hs;
                      bagoptY = mouseY;
-                     room = 98;
                    }
                  }else{
                    bag.inv[bag_y][bag_x] = temp_item_code;
@@ -198,9 +200,10 @@ void mouseReleased(){
                select_item = false;
             }
           }
-  }else{
-    for(int i = 0; i < bag.row; i++){
-          for(int j = 0; j < bag.col; j++)
+      }else{
+        if(select_item){
+        for(int i = 0; i < bag.row; i++){
+            for(int j = 0; j < bag.col; j++)
           {
             sqx = (j+1)*bag.hs + (j*bag.square_width) + (width + bag.UI_dis)/2;
             sqy = (i+1)*bag.vs + (i * bag.square_height) + bag.vertical_margin;
@@ -216,10 +219,13 @@ void mouseReleased(){
                  bagoptX = mouseX+bag.hs;
                  bagoptY = mouseY;
                  room = 98;
-                 select_item = false;
+                 //select_item = false;
                }
              }
           }
+        }
     }
+  }
+  break;
   }
 }

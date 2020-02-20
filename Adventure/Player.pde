@@ -8,6 +8,7 @@ class Player extends Units{
 	protected float str = 1, con = 1, intel = 1, wis = 1, agi = 1;
   protected int exp = 0;
   public final int type = 0;
+  public int dir = 1;
 	Job job;
 	
 	public Player(){
@@ -138,6 +139,42 @@ class Player extends Units{
 	public float get_agi(){
 		return this.agi;
 	}
+
+/********************
+interaction
+********************/
+public int[] interact(){
+  int coords[] = new int[2];
+  
+  switch(dir){
+    //facing up
+    case 0:
+      coords[0] = (int) this.charX / sqw;
+      coords[1] = ((int) this.charY / sqh) - 1;
+      break;
+      
+    //facing right
+    case 1:
+      coords[0] = ((int) this.charX / sqw) + 1;
+      coords[1] = (int) this.charY / sqh;
+      break;
+      
+    //facing down
+    case 2:
+      coords[0] = (int) this.charX / sqw;
+      coords[1] = ((int) this.charY / sqh) + 1;
+      break;
+      
+    //facing right
+    case 3:
+      coords[0] = ((int) this.charX / sqw) + 1;
+      coords[1] = (int) this.charY / sqh;
+      break;
+    
+  }
+  
+  return coords;
+}
 	
 	/***********************
 	*test print

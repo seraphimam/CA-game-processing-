@@ -42,6 +42,13 @@ void keyPressed(){
           //println("change down: " + down);
           break;
           
+          case 'f':
+          case 'F':
+            int target_coord[] = new int[2];
+            target_coord = p[0].interact();
+            
+            
+            break;
           
           case 'o':
           case 'O':
