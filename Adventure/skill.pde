@@ -6,7 +6,6 @@ class Skill{
   protected float damage, mod, fix_dmg,last_damage,heal;
   protected float fix_rate = 1;
   public int left_round = 0;
-  float[] temp_data = new float[10];
 }
 
 
@@ -37,21 +36,25 @@ class Knight_skill_list extends Skill{
          
   }
     
-    public void skill2(){
+    public void skill2(int round){
         
         this.type = 4;
         
         this.mod = 1.5;
         
-        this.left_round = 4;
+        this.left_round = round;
         
-        temp_data[6] = p[0].get_pdef();
+        if(this.left_round > 0){
+          this.mod = 1.5;
+        }
         
-        temp_data[8] = p[0].get_mdef();
+        else if(this.left_round == 0){
+          this.mod = 1.0;          
+        }
         
-        p[0].bonus_pdef *= this.mod;
+        p[0].pdef = p[0].bonus_pdef * this.mod;
         
-        p[0].bonus_mdef *= (this.mod + 0.5);
+        p[0].mdef = p[0].bonus_mdef * this.mod;
     }
     
     public void skill3(){
@@ -75,18 +78,25 @@ class Knight_skill_list extends Skill{
   
 }
     
-    public void skill6(){
+    public void skill6(int round){
       
       this.type = 1;
       
-      this.left_round = 3;
-     
-      this.mod = 1.2;
-    
-      this.last_damage = p[0].get_patk() * 0.2;
-      
-      this.damage = p[0].get_patk() * this.mod;
-    }
+      this.left_round = round;
+          
+      if(this.left_round > 0){
+          this.last_damage = p[0].get_patk() * 0.2;
+        }
+        
+        else if(this.left_round == 0){
+          this.last_damage = 0;        
+        }
+        
+        else if(this.left_round == 4)
+        {
+          this.damage = p[0].get_patk() * this.mod;        
+        }
+}
 
 }
 
@@ -130,40 +140,50 @@ class Paladin_skill_list extends Skill{
     
     }
     
-    public void skill5(){
+    public void skill5(int round){
       
-      this.left_round = 3;
+      this.left_round = round;
       
-      this.damage = p[0].max_hp * 0.3;
       
-      //this.heal = p[0].max_hp * 0.2;
+      if(this.left_round > 0) {
+        
+        this.heal = p[0].max_hp * 0.2;       
+      
+    }
+      
+      if(this.left_round == 3){     
+        this.damage = p[0].max_hp * 0.3;
+      }
+          
     }
     
-    public void skill6(){
+    
+    public void skill6(int round){
       this.type = 2;
       
-      this.left_round = 2;
+      this.left_round = round;
       
       this.mod = 1.5;
       
       this.last_damage = p[0].get_matk() * 0.8 ;
       
+      if(left_round > 0)
+      {
+        this.mod = 1.5; 
+      }
       
-      /*  increase enemy status.
+      else{
+        this.mod = 1.0;  
+      }
       
-      
-      temp_data[6] = ;
-      
-      temp_data[8] = ;
-      
-      p[0].bonus_pdef = temp_data[6] * this.mod;
+      m[0].pdef = m[0].bonus_pdef * this.mod;
         
-      p[0].bonus_mdef = temp_data[8] * (this.mod + 0.5);
+      m[0].mdef = m[0].bonus_mdef * this.mod;
       
-      */
     }
 
 }
+
 
 class Ranger_skill_list extends Skill{
     
@@ -187,18 +207,23 @@ class Ranger_skill_list extends Skill{
     
     }
     
-    public void skill3(){
+    public void skill3(int round){
       
       this.type = 3;
       
-      this.left_round = 3;
+      this.left_round = round;
       
-      temp_data[0] = p[0].bonus_patk;
+      if(left_round > 0)
+      {       
+            p[0].patk = p[0].get_patk() + p[0].get_matk();
+            p[0].matk = p[0].patk;
+      }
       
-      temp_data[2] = p[0].bonus_matk;
-      
-      p[0].bonus_patk = p[0].bonus_patk + p[0].bonus_matk;
-      
+      else{
+            p[0].patk = p[0].bonus_patk;
+            p[0].matk = p[0].bonus_matk; 
+      }      
+            
     }
     
     public void skill4(){
@@ -227,6 +252,8 @@ class Ranger_skill_list extends Skill{
       this.damage = (p[0].get_matk()+p[0].get_patk())*this.mod;
       
     /*
+    AOE
+    
     stun : boss 30 elimet: 60 nomal :80
     if()
     {
@@ -260,45 +287,74 @@ class Assassin_skill_list extends Skill{
     
     }
     
-    public void skill3(){
+    public void skill3(int round){
       
       this.type = 3;
       
-      this.mod = 1.4;
+      this.left_round = round;
       
-      this.left_round = 1;
+      if(this.left_round > 0)
+      {
+        this.mod = 1.4;
+        
+      }
       
-      temp_data[4] = p[0].bonus_agi;
+      else{
+        this.mod = 1.0;
+      }
       
-      p[0].bonus_agi *= this.mod;
+      p[0].agi = p[0].bonus_agi * this.mod;
     
     }
     
-    public void skill4(){
+    public void skill4(int round){
       this.type = 1;
       
       this.mod = 1.2;
       
-      this.left_round = 4;
+      this.left_round = round;
       
-      this.damage = p[0].get_patk() * this.mod;
+      if(this.left_round == 4)
+      {
+          this.damage = p[0].get_patk() * this.mod;
+          // AOE        
+      }
+      
+      else if(this.left_round == 0)
+      {
+        this.last_damage = 0;
+      }
+      
+      else{
       
       this.last_damage = p[0].get_patk() * 0.2;
+      
+      }
+      
+      
+      
+      
     
     }
     
-    public void skill5(){
+    public void skill5(int round){
       
       this.type = 3;
+         
+      this.left_round = round;
       
-      this.mod = 1.25;
+      if(this.left_round >0)
+      {
+        this.mod = 1.25;
+      }
       
-      this.left_round =1;
+      else{
+        this.mod = 1.0;
+      }
       
-      temp_data[5] = p[0].bonus_patk;
+      p[0].patk = p[0].bonus_patk * this.mod;
       
-      p[0].bonus_patk *= this.mod;
-      
+    
     }
     
     public void skill6(){
@@ -336,44 +392,71 @@ class Mage_skill_list extends Skill{
     
     }
     
-    public void skill3(){
+    public void skill3(int round){
       
       this.type = 4;
       
-      this.left_round = 2;
+      this.left_round = round;
       
-      this.heal = p[0].max_mp * 0.2;
+      if(this.left_round > 0)
+      {
+        this.mod = 1.3;
+        
+        
+        this.heal = p[0].max_mp * 0.2;        
+      }
       
-      // damage = 0.7
-    
+      else {       
+        this.heal = 0;
+        
+        this.mod = 1.0;
+      }
+      
+        p[0].pdef = p[0].get_pdef() * this.mod;
+        
+        p[0].mdef = p[0].get_mdef() * this.mod; 
+        
+        p[0].cur_mp += this.heal ; 
     }
     
-    public void skill4(){
+    public void skill4(int round){
       
       this.type = 3;
       
-      this.left_round = 3;
+      this.left_round = round;
       
-      //this.heal = heal enemy
       
-      //stun boss 40
+      if(this.left_round > 0)
+      {
+        //stun enemy.....boss 40%
+        
+        this.heal = m[0].max_hp * 0.2;
+      }
+      
+      else{
+      
+        this.heal = 0;
+      }
+      
+      m[0].cur_hp += this.heal;
+      
+      
     
     }
     
     public void skill5(){
       
       this.type = 2;
-      
-      this.mod = 1.6;
-
-      
+          
       if(doubled)
       {
+        doubled = false;
         this.mod = 2;
       }
       
       else{
         doubled = true;
+        this.mod = 1.6;
       }
       
       this.damage = p[0].get_matk() * this.mod; 
@@ -383,6 +466,9 @@ class Mage_skill_list extends Skill{
     }
     
     public void skill6(){
+      
+      //AOE
+      
       this.type = 2;
       
       this.mod = 1.6;
@@ -396,7 +482,9 @@ class Mage_skill_list extends Skill{
 class Priest_skill_list extends Skill{
     
     public void skill1(){
+      
       this.type = 2;
+      
       this.mod = 1.3;
       
       this.damage = p[0].get_matk() * this.mod;
@@ -409,33 +497,29 @@ class Priest_skill_list extends Skill{
       this.heal = p[0].get_matk();
     }
     
-    public void skill3(){
+    public void skill3(int round){
       
       this.type = 5;
       
-      this.left_round = 4;
+      this.left_round = round;
       
       this.mod = 1.2;
       
-      temp_data[0] = p[0].bonus_str;
+      if(round > 0)
+      {
+        this.mod = 1.2;
+      }
       
-      temp_data[1] = p[0].bonus_con;
+      else
+      {  
+        this.mod = 1.0;
+      }
       
-      temp_data[2] = p[0].bonus_intel;
-      
-      temp_data[3] = p[0].bonus_wis;
-      
-      temp_data[4] = p[0].bonus_agi;
-      
-      p[0].bonus_str *= this.mod;
-      
-      p[0].bonus_con *= this.mod;
-      
-      p[0].bonus_intel *= this.mod;
-      
-      p[0].bonus_wis *= this.mod;
-      
-      p[0].bonus_agi *= this.mod;
+       p[0].str = p[0].bonus_str * this.mod;
+       p[0].con = p[0].bonus_con * this.mod;
+       p[0].intel = p[0].bonus_intel * this.mod;
+       p[0].wis = p[0].bonus_wis * this.mod;
+       p[0].agi = p[0].bonus_agi * this.mod;
       
     }
     
@@ -449,33 +533,29 @@ class Priest_skill_list extends Skill{
       
     }
     
-    public void skill5(){
+    public void skill5(int round){
+      //AOE
       
       this.type = 5;
       
-      this.left_round = 4;
+      this.left_round = round;
       
-      this.mod = 1.15;
+      if(round > 0)
+      {
+        this.mod = 1.15;
+      }
       
-      temp_data[0] = p[0].bonus_str;
+      else
+      {  
+        this.mod = 1.0;
+      }
       
-      temp_data[1] = p[0].bonus_con;
+       p[0].str = p[0].bonus_str * this.mod;
+       p[0].con = p[0].bonus_con * this.mod;
+       p[0].intel = p[0].bonus_intel * this.mod;
+       p[0].wis = p[0].bonus_wis * this.mod;
+       p[0].agi = p[0].bonus_agi * this.mod;
       
-      temp_data[2] = p[0].bonus_intel;
-      
-      temp_data[3] = p[0].bonus_wis;
-      
-      temp_data[4] = p[0].bonus_agi;
-      
-      p[0].bonus_str *= this.mod;
-      
-      p[0].bonus_con *= this.mod;
-      
-      p[0].bonus_intel *= this.mod;
-      
-      p[0].bonus_wis *= this.mod;
-      
-      p[0].bonus_agi *= this.mod;
     
     }
     
@@ -486,7 +566,7 @@ class Priest_skill_list extends Skill{
       p[0].cur_hp = p[0].max_hp;
       
       p[0].cur_hp = p[0].max_mp;
-    
+      
+      p[0].cur_mp = 0;
     }
-
 }

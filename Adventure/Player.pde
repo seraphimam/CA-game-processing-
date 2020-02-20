@@ -7,7 +7,6 @@
 class Player extends Units{
 	protected float str = 1, con = 1, intel = 1, wis = 1, agi = 1;
   protected int exp = 0;
-  public final int type = 0;
   public int dir = 1;
 	Job job;
 	
@@ -165,9 +164,9 @@ public int[] interact(){
       coords[1] = ((int) this.charY / sqh) + 1;
       break;
       
-    //facing right
+    //facing left
     case 3:
-      coords[0] = ((int) this.charX / sqw) + 1;
+      coords[0] = ((int) this.charX / sqw) - 1;
       coords[1] = (int) this.charY / sqh;
       break;
     

@@ -114,6 +114,21 @@ void if_dodge(int attacker,int defender, int attacker_type){
           dodge = false;
         }
      
-  
+}
 
+void enemy_setup(){
+  int types;
+  
+  if(floor < 3){
+    types = floor;
+  }else{
+    types = 1;
+  }
+  
+  for(int i = 0; i < enemy_count; i++){
+    m[i].set_type(r.nextInt(100) % types + 1);
+    m[i].set_level(r.nextInt(100) % floor*5 + 1);
+    m[i].init_stats();
+  }
+  
 }

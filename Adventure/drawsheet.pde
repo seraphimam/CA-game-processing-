@@ -126,8 +126,8 @@ float pc_width, pc_height, pcx, pcy, hp_percent;
   pcx = width*2/3.0f + battle_UI_margin + (float)(max_pt/2.0) * pc_width;
   pcy = battle_UI_margin + pc_height/2.0f;
   
-  enemy_width = (width/3.0f - 4.0f * battle_UI_margin)/ (float)(enemy_count+1);
-  enemy_height = (height*2/3.0f - 3.0f * battle_UI_margin)/ (float)(enemy_count+2);
+  enemy_width = (width/3.0f - 4.0f * battle_UI_margin)/ (float)(max_pt+1);
+  enemy_height = (height*2/3.0f - 3.0f * battle_UI_margin)/ (float)(max_pt+2);
   enemy_x = battle_UI_margin + (float)(enemy_count-1) * enemy_width;
   enemy_y = battle_UI_margin + enemy_height/2.0f;
   
@@ -146,7 +146,8 @@ float pc_width, pc_height, pcx, pcy, hp_percent;
   
   //Draw enemies
   for(int i = 0; i < enemy_count; i++){
-    image(test, enemy_x - i*enemy_width/2.0f, enemy_y + i*enemy_height*1.5f, enemy_width, enemy_height);
+    image(m[i].img, enemy_x - i*enemy_width/2.0f, enemy_y + i*enemy_height*1.5f, enemy_width, enemy_height);
+    println("mob lv: " + m[i].get_level() + " patk: " + m[i].get_patk());
   }
   
   //Draw player status boxes

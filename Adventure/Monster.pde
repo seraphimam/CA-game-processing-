@@ -2,28 +2,64 @@
   /*******************************************
   Monster status setting
   ********************************************/ 
-  
+
 
 
 class Monster extends Units{
-  private int type = 1;
-  private String monster_type = "Normal";
-  private String name;
-  private int skillset = 0;
-
-	public Monster(int t, int lv, float pa, float pd, float ma, float md, float mhp, float mmp, float sp){
+  protected String monster_type = "Normal";
+  protected String name;
+  protected int skillset = 0;
+  protected float mod = 1.0;
+  
+  public Monster(){
+  }
+  
+  public Monster(int t){
+    this.type = t;
+  }
+  
+	public Monster(int t, int lv){
     this.type = t;
 		this.level = lv;
-		this.patk = pa;
-		this.pdef = pd;
-		this.matk = ma;
-		this.mdef = md;
-		this.spd = sp;
-		this.max_hp = mhp;
-		this.max_mp = mmp;
-		this.cur_hp = mhp;
-		this.cur_mp = mmp;
+  
+    init_stats();
 	}
+
+  
+  public void init_stats(){
+    switch(type){
+      case 1:
+        this.monster_type = "Normal";
+        this.mod = 1.0;
+        this.img = loadImage("src/monster/normal/n1.png");
+        break;
+      
+      case 2:
+        this.monster_type = "Elite";
+        this.mod = 1.5;
+        this.img = loadImage("src/monster/elite/e1.png");
+        break;
+      
+      case 3:
+        this.monster_type = "Boss";
+        this.mod = 2.0;
+        this.img = loadImage("src/monster/boss/b1.png");
+        break;
+      
+    }
+    
+    this.patk = (level * 10) * mod;
+    this.pdef = (level * 10) * mod;
+    this.matk = (level * 10) * mod;
+    this.mdef = (level * 10) * mod;
+    this.spd = (level * 10) * mod;
+    this.max_hp = (level * 10) * mod;
+    this.max_mp = (level * 10) * mod;
+    this.cur_hp = (level * 10) * mod;
+    this.cur_mp = (level * 10) * mod;
+    
+    
+  }
 	
 	public void calc_stats(){
 		this.patk = patk + bonus_patk;

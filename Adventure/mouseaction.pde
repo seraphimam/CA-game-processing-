@@ -219,7 +219,6 @@ void mouseReleased(){
                  bagoptX = mouseX+bag.hs;
                  bagoptY = mouseY;
                  room = 98;
-                 //select_item = false;
                }
              }
           }

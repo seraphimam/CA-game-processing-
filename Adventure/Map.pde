@@ -15,15 +15,17 @@ Map map = new Map();
   
   //bg = loadImage("src/backgroundimage/map1.jpg");
   public Map(){
+    map_init();
   }
   
   public Map(int exit_count){
     exit = new int[exit_count][exit_count];
+    
+    map_init();
   }
   
   
-  public void map_init(int exit_count){
-    exit = new int[exit_count][exit_count];
+  public void map_init(){
     
     for(int i = 0; i < map_height; i++){
       for(int j = 0; j < map_width; j++){
@@ -39,19 +41,18 @@ Map map = new Map();
     return maproom;
   }
   
-  
-  public void drawmap(int mapid){
-    
-    background(0);
-    
-    for(int i = 0; i < map_height; i++){
-      for(int j = 0; j < map_width; j++){
+  public void draw_npc(){
+    fill(0,0,100);
+    for(int i = 0; i < npc.length; i++){
+      for(int j = 0; j < npc[i].length; j++){
         if(this.npc[i][j]){
-          fill(0,100,100);
           rect(j * sqw, i * sqh, sqw, sqh);
         }
       }
     }
+  }
+  
+  public void drawmap(int mapid){
     
   switch(mapid){
       case 1:

@@ -15,30 +15,39 @@ void keyPressed(){
       switch(keyCode){
         case 'a':
         case 'A':
-          left = true;
-          
-      monsterappear();
+          if(!up && !down && !right){
+            left = true;
+            p[0].dir = 3;
+            monsterappear();
+            
+          }
           //println("change left: " + left);
           break;
         case 'd':
         case 'D':
-          right = true;
-          
-      monsterappear();
+          if(!up && !down && !left){
+            right = true;
+            p[0].dir = 1;
+            monsterappear();
+          }
           //println("change right: " + right);
           break;
         case 'w':
         case 'W':
-          up = true;
-          
-      monsterappear();
+          if(!down && !left && !right){
+            up = true;
+            p[0].dir = 0;
+            monsterappear();
+          }
           //println("change up: " + up);
           break;
         case 's':
         case 'S':
-          down = true;
-          
-      monsterappear();
+          if(!up && !left && !right){
+            down = true;
+            p[0].dir = 2;
+            monsterappear();
+          }
           //println("change down: " + down);
           break;
           
@@ -47,7 +56,9 @@ void keyPressed(){
             int target_coord[] = new int[2];
             target_coord = p[0].interact();
             
-            
+            if(map.npc[target_coord[1]][target_coord[0]]){
+              println("HI!");
+            }
             break;
           
           case 'o':
